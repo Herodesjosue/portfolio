@@ -157,7 +157,7 @@ const HeroSection = () => {
             />
           </div>
 
-          <div className="flex justify-center p-10 gap-20 items-center">
+          {/* <div className="flex justify-center p-10 gap-20 items-center">
             <div className="flex flex-col items-center">
               <h2 className="flex gap-2 items-center text-2xl">
                 <span className="text-5xl">+3</span>
@@ -168,9 +168,9 @@ const HeroSection = () => {
               </span>
             </div>
 
-          </div>
+          </div> */}
 
-          <div className="flex justify-center  items-center gap-2.5 text-3xl mt-2">
+          <div className="flex justify-center  items-center gap-2.5 text-3xl p-10">
             <Link
               href="https://www.linkedin.com/in/herodeslugo/"
               target="_blank"
