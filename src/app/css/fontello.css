@@ -1,0 +1,131 @@
+@font-face {
+  font-family: "icons";
+  src: url("/fonts/icons/icons.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon"],
+[class*=" icon"] {
+  line-height: 0 !important;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-discord:before {
+  content: "\e800";
+} /* '' */
+.icon-medium:before {
+  content: "\e801";
+} /* '' */
+.icon-telegram:before {
+  content: "\e802";
+} /* '' */
+.icon-gitbook:before {
+  content: "\e803";
+} /* '' */
+.icon-nest:before {
+  content: "\e804";
+} /* '' */
+.icon-drop:before {
+  content: "\e805";
+} /* '' */
+.icon-reports:before {
+  content: "\e806";
+} /* '' */
+.icon-chain:before {
+  content: "\e807";
+} /* '' */
+.icon-finance:before {
+  content: "\e808";
+} /* '' */
+.icon-square:before {
+  content: "\e809";
+} /* '' */
+.icon-left:before {
+  content: "\e80a";
+} /* '' */
+.icon-right:before {
+  content: "\e80b";
+} /* '' */
+.icon-minus:before {
+  content: "\e80c";
+} /* '' */
+.icon-engine:before {
+  content: "\e812";
+} /* '' */
+.icon-temple:before {
+  content: "\e821";
+} /* '' */
+.icon-edit:before {
+  content: "\e822";
+} /* '' */
+.icon-startup:before {
+  content: "\e823";
+} /* '' */
+.icon-dollar:before {
+  content: "\e824";
+} /* '' */
+.icon-coins:before {
+  content: "\e825";
+} /* '' */
+.icon-diamant-border:before {
+  content: "\e826";
+} /* '' */
+.icon-peck-shield:before {
+  content: "\e8b6";
+} /* '' */
+.icon-zeppelin:before {
+  content: "\e8b7";
+} /* '' */
+.icon-hats-finance:before {
+  content: "\e8b8";
+} /* '' */
+.icon-paladin:before {
+  content: "\e8b9";
+} /* '' */
+.icon-chainsecurity:before {
+  content: "\e8bb";
+} /* '' */
+.icon-code4arena:before {
+  content: "\e8bc";
+} /* '' */
+.icon-shield:before {
+  content: "\eaa6";
+} /* '' */
+.icon-graph-up:before {
+  content: "\eaa7";
+} /* '' */
+.icon-diamant:before {
+  content: "\eaa8";
+} /* '' */
+.icon-gift:before {
+  content: "\eaa9";
+} /* '' */
+.icon-interface:before {
+  content: "\eaaa";
+} /* '' */
+.icon-bars:before {
+  content: "\eaab";
+} /* '' */
+.icon-arrow-up-right:before {
+  content: "\eaac";
+} /* '' */
+.icon-cross:before {
+  content: "\eaae";
+} /* '' */
