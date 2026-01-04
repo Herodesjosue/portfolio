@@ -2,6 +2,8 @@ import React from "react";
 import { Brain, Code, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import Marquee from "react-fast-marquee";
+
 interface FeatureCardProps {
   title: string;
   desc: string;
@@ -22,7 +24,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ title, desc, icon }) => (
 );
 
 const Pill: React.FC<PillProps> = ({ title, icon }) => (
-  <div className="flex items-center gap-3 bg-neutral-900/80 border border-neutral-800 rounded-lg px-4 py-2 text-sm text-neutral-200">
+  <div className="flex  items-center justify-center w-full gap-3 bg-neutral-900/80 border border-neutral-800 transition-colors duration-500 hover:border-white rounded-lg px-4 py-2 text-sm text-neutral-200">
     <div className="w-5 h-5 flex items-center justify-center">{icon}</div>
     <div className="text-white text-lg">{title}</div>
   </div>
@@ -31,11 +33,9 @@ const Pill: React.FC<PillProps> = ({ title, icon }) => (
 const HeroSection = () => {
   return (
     <div className="h-screen relative overflow-hidden p-10">
-       
       <div className="h-full w-full flex items-center justify-center  border border-white/40">
-        <div className="max-w-6xl w-full px-6 py-12 z-10 text-center">
+        <div className="max-w-6xl overflow-hidden w-full px-6 py-12 z-10 text-center">
           <div className="flex  flex-col text-2xl gap-2 my-12">
-
             <h1>{`Hi i'm Herodes`} 👋</h1>
             <h3 className=""> Full Stack Developer 🚀</h3>
             <p className="text-sm">
@@ -45,7 +45,7 @@ const HeroSection = () => {
           </div>
 
           {/* Feature cards row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3  gap-6 mb-12">
             <FeatureCard
               title="Performance First"
               desc="Optimized frontends with Nextjs and modern rendering strategies."
@@ -71,92 +71,108 @@ const HeroSection = () => {
           {/* Tech cards */}
 
           {/* Pills / small tech list */}
-          <div className="flex items-center justify-center gap-3">
-            <Pill
-              title="React"
-              icon={
-                <Image
-                  src="/images/assets/react.png"
-                  alt="React"
-                  width={48}
-                  className="mix-blend-lighten"
-                  height={48}
+          <div className="max-w-xl mx-auto">
+            <Marquee gradient gradientColor="#131414" speed={50}>
+              <div className="inline-block mx-3 shrink-0">
+                <Pill
+                  title="React"
+                  icon={
+                    <Image
+                      src="/images/assets/react.png"
+                      alt="React"
+                      width={48}
+                      className="mix-blend-lighten"
+                      height={48}
+                    />
+                  }
                 />
-              }
-            />
-            <Pill
-              title="Next.js"
-              icon={
-                <Image
-                  src="/images/assets/nextjs.png"
-                  alt="nextjs"
-                  className="invert"
-                  width={80}
-                  height={80}
+              </div>
+              <div className="inline-block mx-3 shrink-0">
+                <Pill
+                  title="Next.js"
+                  icon={
+                    <Image
+                      src="/images/assets/nextjs.png"
+                      alt="nextjs"
+                      className="invert"
+                      width={80}
+                      height={80}
+                    />
+                  }
                 />
-              }
-            />
-            <Pill
-              title="TypeScript"
-              icon={
-                <Image
-                  src="/images/assets/typescript.png"
-                  alt="typescript"
-                  width={48}
-                  height={48}
+              </div>
+              <div className="inline-block mx-3 shrink-0">
+                <Pill
+                  title="TypeScript"
+                  icon={
+                    <Image
+                      src="/images/assets/typescript.png"
+                      alt="typescript"
+                      width={48}
+                      height={48}
+                    />
+                  }
                 />
-              }
-            />
-            <Pill
-              title="Tailwind"
-              icon={
-                <Image
-                  src="/images/assets/tailwind.png"
-                  alt="tailwind"
-                  className="invert"
-                  width={48}
-                  height={48}
-                />
-              }
-            />
-            <Pill
-              title="Prisma"
-              icon={
-                <Image
-                  src="/images/assets/prisma.svg"
-                  alt="prisma"
-                  className="invert"
-                  width={48}
-                  height={48}
-                />
-              }
-            />
-              <Pill
-              title="PostgreSQL"
-              icon={
-                <Image
-                  src="/images/assets/postgresql.svg"
-                  alt="postgresql"
-                  className="invert"
-                  width={48}
-                  height={48}
-                />
-              }
-            />
-               <Pill
-              title="NestJS"
-              icon={
-                <Image
-                  src="/images/assets/nestjs.svg"
-                  alt="nestjs"
-                  className="invert"
-                  width={48}
-                  height={48}
-                />
-              }
-            />
-          </div>
+              </div>
 
+              <div className="inline-block mx-3 shrink-0">
+                <Pill
+                  title="Tailwind"
+                  icon={
+                    <Image
+                      src="/images/assets/tailwind.png"
+                      alt="tailwind"
+                      className="invert"
+                      width={48}
+                      height={48}
+                    />
+                  }
+                />
+              </div>
+              <div className="inline-block mx-3 shrink-0">
+                <Pill
+                  title="Prisma"
+                  icon={
+                    <Image
+                      src="/images/assets/prisma.svg"
+                      alt="prisma"
+                      className="invert"
+                      width={48}
+                      height={48}
+                    />
+                  }
+                />
+              </div>
+              <div className="inline-block mx-3 shrink-0">
+                <Pill
+                  title="PostgreSQL"
+                  icon={
+                    <Image
+                      src="/images/assets/postgresql.svg"
+                      alt="postgresql"
+                      className="invert"
+                      width={48}
+                      height={48}
+                    />
+                  }
+                />
+              </div>
+              <div className="inline-block mx-3 shrink-0">
+              <Pill
+                title="NestJS"
+                icon={
+                  <Image
+                    src="/images/assets/nestjs.svg"
+                    alt="nestjs"
+                    className="invert"
+                    width={48}
+                    height={48}
+                  />
+                }
+              />
+              </div>
+            </Marquee>
+          </div>
           {/* <div className="flex justify-center p-10 gap-20 items-center">
             <div className="flex flex-col items-center">
               <h2 className="flex gap-2 items-center text-2xl">
