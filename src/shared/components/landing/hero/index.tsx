@@ -32,9 +32,9 @@ const Pill: React.FC<PillProps> = ({ title, icon }) => (
 
 const HeroSection = () => {
   return (
-    <div className="h-screen relative overflow-hidden p-10">
-      <div className="h-full w-full flex items-center justify-center  border border-white/40">
-        <div className="max-w-6xl overflow-hidden w-full px-6 py-12 z-10 text-center">
+    <div className="h-screen relative sm:overflow-hidden p-10">
+      <div className="h-full w-full flex items-center justify-center  sm:border-2 border-white/40">
+        <div className="max-w-6xl sm:overflow-hidden w-full px-6 py-12 z-10 text-center">
           <div className="flex  flex-col text-2xl gap-2 my-12">
             <h1>{`Hi i'm Herodes`} 👋</h1>
             <h3 className=""> Full Stack Developer 🚀</h3>

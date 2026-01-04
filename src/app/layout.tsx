@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${matte.variable} ${matte.className}  bg-dark text-white min-h-screen  overflow-hidden`}>
+      <body className={`${matte.variable} ${matte.className}  bg-dark text-white min-h-screen  sm:overflow-hidden`}>
         {/* <Header /> */}
         {children}
       </body>
