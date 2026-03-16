@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(python3 -c \"import socket; s=socket.socket\\(\\); s.connect\\(\\(''''localhost'''',3000\\)\\); s.close\\(\\); print\\(''''3000 open''''\\)\")",
+      "Bash(curl -s -o /dev/null -w %{http_code} http://localhost:3000)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(npx tsc:*)",
+      "Bash(xargs kill:*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}

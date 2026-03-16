@@ -1,47 +1,27 @@
 {
-  "name": "hype-landing",
+  "name": "hero-landing",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "analyze": "cross-env ANALYZE=true next build"
+    "lint": "eslint"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.4.2",
-    "@react-three/postprocessing": "^3.0.4",
-    "@types/three": "^0.181.0",
-    "animate.css": "^4.1.1",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "gsap": "^3.13.0",
-    "lottie-react": "^2.4.1",
-    "lucide-react": "^0.562.0",
-    "next": "^16.1.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-fast-marquee": "^1.6.5",
-    "react-slick": "^0.30.3",
-    "slick-carousel": "^1.8.1",
-    "swiper": "^11.2.10",
-    "tailwind-merge": "^3.3.1",
-    "three": "^0.181.2",
-    "zustand": "^5.0.8"
+    "@types/three": "^0.183.1",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "three": "^0.183.2"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@next/bundle-analyzer": "^15.5.4",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/react-slick": "^0.23.13",
-    "cross-env": "^10.0.0",
     "eslint": "^9",
-    "eslint-config-next": "15.3.5",
+    "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
