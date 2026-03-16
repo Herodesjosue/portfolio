@@ -13,7 +13,7 @@ export default function Hero() {
     >
       {/* Status badge */}
       <div className="mb-6 flex items-center gap-2.5" data-gsap="hero-status">
-        <span className="blink h-2 w-2 flex-shrink-0 rounded-full bg-emerald-400" />
+        <span className="blink h-2 w-2 shrink-0 rounded-full bg-emerald-400" />
         <span className="text-[10px] font-medium tracking-[0.3em] text-emerald-400/80 uppercase">
           Disponible para proyectos
         </span>
