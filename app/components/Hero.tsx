@@ -1,8 +1,8 @@
 import { ArrowRight } from "./icons";
 
 const stats = [
-  { value: "5+",  label: "Años exp." },
-  { value: "20+", label: "Proyectos" },
+  { value: "3+",  label: "Años exp." },
+  { value: "5+", label: "Proyectos" },
   { value: "10+", label: "Tecnologías" },
 ];
 
