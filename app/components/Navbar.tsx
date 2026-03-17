@@ -44,7 +44,7 @@ export default function Navbar() {
           <ThemeToggle />
 
           <a
-            href="/pdf/herodeslugo@gmail.com.pdf"
+            href="/pdf/herodes-lugo-cv.pdf"
             download="Herodes_Lugo_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
@@ -82,7 +82,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="/pdf/herodeslugo@gmail.com.pdf"
+            href="/pdf/herodes-lugo-cv.pdf"
             download="Herodes_Lugo_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
