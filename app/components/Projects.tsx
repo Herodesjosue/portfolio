@@ -64,7 +64,7 @@ const projects = [
     id: "fenix",
     number: "04",
     industry: "PERPS TRADING AND CRYPTO",
-    title: "FENIX FINANCES",
+    title: "FENIX FINANCE",
     description:
       "Marketplace where protocols compete for liquidity, users earn by voting and providing funds, and traders enjoy efficient exchange—powered by Blast network's native yield.",
     responsibilities: [
@@ -77,7 +77,7 @@ const projects = [
       { value: "+5K", label: "USERS" },
     ],
     websiteUrl: "https://FENIX.io",
-    websiteLabel: "FENIX FINANCES",
+    websiteLabel: "FENIX FINANCE",
     image: "/images/projects/fenix-hero.webp",
   },
   {

@@ -31,31 +31,38 @@ export default function Hero() {
         <span className="mx-3 opacity-30">·</span>
         Creative Engineer
       </p>
-      <div className="flex py-10 max-lg:flex-col items-end">
+
+      <div className="flex py-10 flex-col items-center ">
         {/* Headline */}
+
         <h1
-          className="mx-auto max-w-5xl text-left max-lg:text-center font-black leading-[0.88] tracking-[-0.04em]"
+          className="mx-auto  text-center max-lg:text-center font-black leading-[0.88] tracking-[-0.04em]"
           style={{
-            fontSize: "clamp(2.8rem, 5.5vw, 6.5rem)",
+            fontSize: "clamp(2.8rem, 4.5vw, 6.5rem)",
             color: "var(--c-fg)",
           }}
           data-gsap="hero-headline"
         >
-          <span className="block">CONSTRUYENDO</span>
-          <span className="block" style={{ color: "var(--c-muted)" }}>
-            ARQUITECTURAS
+          <span className="block">
+            CONSTRUYENDO {" "}
+            <span className="" style={{ color: "var(--c-muted)" }}>
+              ARQUITECTURAS
+            </span>
           </span>
+
           <span className="block" style={{ color: "var(--c-muted)" }}>
             ESCALABLES
+            {" "}
+          <span className="">Y</span>
+
           </span>
-          <span className="block">Y EXPERIENCIAS</span>
-          <span className="block">INMERSIVAS.</span>
+          <span className="block">  EXPERIENCIAS INMERSIVAS.</span>
         </h1>
 
-        <div className="">
+        <div className=" flex flex-col gap-5 mt-5 ">
           {/* Description */}
           <p
-            className="mb-10 max-w-lg text-sm leading-relaxed"
+            className=" max-w-lg text-sm leading-relaxed"
             style={{ color: "var(--c-muted)" }}
             data-gsap="hero-desc"
           >
@@ -65,7 +72,7 @@ export default function Hero() {
 
           {/* CTAs */}
           <div
-            className="mb-14 flex flex-wrap items-center justify-center gap-3"
+            className=" flex flex-wrap items-center justify-center gap-3"
             data-gsap="hero-cta"
           >
             <a
