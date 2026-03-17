@@ -176,12 +176,12 @@ function ProjectCard({ project }: { project: Project }) {
           className="grid gap-4 border-t border-line pt-4"
           style={{ gridTemplateColumns: `repeat(${project.stats.length}, 1fr)` }}
         >
-          {project.stats.map((stat) => (
+          {/* {project.stats.map((stat) => (
             <div key={stat.label} className="flex flex-col gap-0.5">
               <span className="text-base font-bold tracking-tight text-fg">{stat.value}</span>
               <span className="text-[9px] font-medium tracking-[0.2em] uppercase text-muted opacity-50">{stat.label}</span>
             </div>
-          ))}
+          ))} */}
         </div>
 
         <div className="mt-auto pt-2">
