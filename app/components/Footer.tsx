@@ -1,86 +1,84 @@
-const contacts = [
+import { EmailIcon, LinkedInIcon } from "./icons";
+
+interface Contact {
+  type: string;
+  label: string;
+  href: string;
+  icon: React.ReactNode;
+}
+
+const contacts: Contact[] = [
   {
     type: "Email",
     label: "herodeslugo@gmail.com",
     href: "mailto:herodeslugo@gmail.com",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-      </svg>
-    ),
+    icon: <EmailIcon className="size-5" />,
   },
   {
     type: "LinkedIn",
     label: "/in/herodeslugo",
     href: "https://www.linkedin.com/in/herodeslugo/",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-        <rect x="2" y="9" width="4" height="12" />
-        <circle cx="4" cy="4" r="2" />
-      </svg>
-    ),
+    icon: <LinkedInIcon className="size-5" />,
   },
-
 ];
+
+function ContactCard({ contact }: { contact: Contact }) {
+  return (
+    <a
+      href={contact.href}
+      target={contact.href.startsWith("http") ? "_blank" : undefined}
+      rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
+      className="theme-card group flex flex-col items-center gap-3 rounded-xl px-5 py-6"
+    >
+      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-line2 text-muted transition-all duration-300">
+        {contact.icon}
+      </div>
+      <div className="flex flex-col items-center gap-1">
+        <span className="text-[9px] font-semibold tracking-[0.3em] uppercase text-muted opacity-50">
+          {contact.type}
+        </span>
+        <span className="text-xs font-medium text-muted transition-colors duration-300">
+          {contact.label}
+        </span>
+      </div>
+    </a>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer
-      id="contacto"
-      className="pt-24 lg:pt-32"
-      // style={{ borderTop: "1px solid var(--c-border)" }}
-      data-gsap="footer-section"
-    >
+    <footer id="contacto" className="pt-24 lg:pt-32" data-gsap="footer-section">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col items-center gap-12 text-center">
 
-          {/* Label */}
-          <span className="text-xs font-medium tracking-[0.35em] uppercase"
-            style={{ color: "var(--c-muted)" }}>
+          <span className="text-xs font-medium tracking-[0.35em] uppercase text-muted">
             05 — Contacto
           </span>
 
-          {/* Headline */}
           <h2
-            className="font-black tracking-[-0.03em]"
-            style={{
-              fontSize: "clamp(2.4rem, 6vw, 5.5rem)",
-              lineHeight: 0.9,
-              color: "var(--c-fg)",
-            }}
+            className="font-black tracking-[-0.03em] text-fg"
+            style={{ fontSize: "clamp(2.4rem, 6vw, 5.5rem)", lineHeight: 0.9 }}
             data-gsap="footer-headline"
           >
             ¿LISTO PARA
             <br />
-            <span style={{ color: "var(--c-muted)" }}>CONSTRUIR ALGO</span>
+            <span className="text-muted">CONSTRUIR ALGO</span>
             <br />
             INCREÍBLE?
           </h2>
 
-          {/* Quote */}
-          <p className="max-w-2xl text-base leading-relaxed" style={{ color: "var(--c-muted)" }}>
+          <p className="max-w-2xl text-base leading-relaxed text-muted">
             Si buscas a un desarrollador que vea el código como una herramienta para{" "}
-            <em className="not-italic font-semibold" style={{ color: "var(--c-fg)" }}>
-              resolver problemas reales
-            </em>{" "}
+            <em className="not-italic font-semibold text-fg">resolver problemas reales</em>{" "}
             mediante la innovación, hablemos.
           </p>
 
-          {/* CTAs */}
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
               href="mailto:herodeslugo@gmail.com"
               className="btn-primary inline-flex items-center gap-3 rounded-sm px-8 py-4 text-sm font-bold tracking-[0.15em] uppercase"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
+              <EmailIcon className="size-4" />
               Escribir un Mensaje
             </a>
             <a
@@ -89,65 +87,28 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="btn-outline inline-flex items-center gap-3 rounded-sm px-8 py-4 text-sm font-bold tracking-[0.15em] uppercase"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                <rect x="2" y="9" width="4" height="12" />
-                <circle cx="4" cy="4" r="2" />
-              </svg>
+              <LinkedInIcon className="size-4" />
               Conectar en LinkedIn
             </a>
           </div>
 
-          {/* Contact cards */}
           <div className="grid w-full max-w-3xl grid-cols-1 gap-3 sm:grid-cols-2">
             {contacts.map((c) => (
-              <a
-                key={c.type}
-                href={c.href}
-                target={c.href.startsWith("http") ? "_blank" : undefined}
-                rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="theme-card group flex flex-col items-center gap-3 rounded-xl px-5 py-6"
-              >
-                <div
-                  className="flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-300"
-                  style={{
-                    border: "1px solid var(--c-border2)",
-                    color: "var(--c-muted)",
-                  }}
-                >
-                  {c.icon}
-                </div>
-                <div className="flex flex-col items-center gap-1">
-                  <span className="text-[9px] font-semibold tracking-[0.3em] uppercase"
-                    style={{ color: "var(--c-muted)", opacity: 0.5 }}>
-                    {c.type}
-                  </span>
-                  <span className="text-xs font-medium transition-colors duration-300"
-                    style={{ color: "var(--c-muted)" }}>
-                    {c.label}
-                  </span>
-                </div>
-              </a>
+              <ContactCard key={c.type} contact={c} />
             ))}
           </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="mt-16 py-8" style={{ borderTop: "1px solid var(--c-border)" }}>
+      <div className="mt-16 border-t border-line py-8">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <div
-              className="flex h-8 w-8 items-center justify-center rounded-sm text-xs font-black"
-              style={{ border: "1px solid var(--c-border)", color: "var(--c-border2)" }}
-            >
+            <div className="flex h-8 w-8 items-center justify-center rounded-sm border border-line text-xs font-black text-line2">
               HL
             </div>
-            <p className="text-xs tracking-[0.1em]" style={{ color: "var(--c-muted)", opacity: 0.4 }}>
+            <p className="text-xs tracking-widest text-muted opacity-40">
               Copyright © 2026 Herodes Lugo. Todos los derechos reservados.
             </p>
-        
           </div>
         </div>
       </div>

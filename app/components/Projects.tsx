@@ -1,6 +1,22 @@
 import Image from "next/image";
+import { ArrowRight } from "./icons";
 
-const projects = [
+interface Stat { value: string; label: string }
+
+interface Project {
+  id: string;
+  number: string;
+  industry: string;
+  title: string;
+  description: string;
+  responsibilities: string[];
+  stats: Stat[];
+  websiteUrl: string;
+  websiteLabel: string;
+  image: string;
+}
+
+const projects: Project[] = [
   {
     id: "sozialens",
     number: "01",
@@ -101,202 +117,117 @@ const projects = [
   },
 ];
 
-export default function Projects() {
+function ProjectCard({ project }: { project: Project }) {
   return (
-    <section id="proyectos" className="py-24 lg:py-0" data-gsap="projects-section">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
-        {/* Header */}
-        <div className="mb-16 flex flex-col gap-4" data-gsap="projects-header">
-          <span
-            className="text-xs font-medium tracking-[0.35em] uppercase"
-            style={{ color: "var(--c-muted)" }}
-          >
-            04 — Proyectos
+    <article className="theme-card group flex h-full flex-col overflow-hidden rounded-xl">
+      <div className="relative h-52 overflow-hidden bg-surface2 lg:h-64">
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-black/40 transition-opacity duration-300 group-hover:bg-black/30" />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.04] transition-opacity duration-300 group-hover:opacity-[0.07]"
+          style={{
+            backgroundImage: "linear-gradient(rgba(128,128,128,1) 1px, transparent 1px), linear-gradient(90deg, rgba(128,128,128,1) 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+          }}
+        />
+        <div className="absolute bottom-4 right-5">
+          <span className="select-none text-6xl font-black" style={{ color: "rgba(255,255,255,0.15)" }}>
+            {project.number}
           </span>
-          <h2
-            className="text-4xl font-black tracking-[-0.02em] sm:text-5xl lg:text-6xl"
-            style={{ color: "var(--c-fg)" }}
+        </div>
+        <div className="absolute left-4 top-4 h-5 w-5 border-l border-t transition-all duration-300 group-hover:opacity-60" style={{ borderColor: "rgba(255,255,255,0.3)" }} />
+        <div className="absolute right-4 top-4 h-5 w-5 border-r border-t transition-all duration-300 group-hover:opacity-60" style={{ borderColor: "rgba(255,255,255,0.3)" }} />
+        <div className="absolute left-1/2 top-4 -translate-x-1/2">
+          <span
+            className="rounded-sm px-3 py-1.5 text-[9px] font-medium tracking-[0.25em] uppercase backdrop-blur-sm"
+            style={{ border: "1px solid rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.75)", background: "rgba(0,0,0,0.35)" }}
           >
-            LOGROS CLAVE
-          </h2>
-          <div className="h-px w-16" style={{ background: "var(--c-border2)" }} />
+            {project.industry}
+          </span>
+        </div>
+      </div>
+
+      <div className="flex flex-1 flex-col gap-5 p-7">
+        <h3 className="text-xl font-bold leading-tight tracking-tight text-fg">{project.title}</h3>
+
+        <p className="text-sm leading-relaxed text-muted">{project.description}</p>
+
+        <div className="flex flex-col flex-1  gap-1.5">
+          <span className="text-[9px] font-medium tracking-[0.3em] uppercase text-muted opacity-50">
+            Responsabilidades
+          </span>
+          <ul className="flex flex-col gap-1">
+            {project.responsibilities.map((r) => (
+              <li key={r} className="flex items-center gap-2 text-[11px] leading-snug text-muted">
+                <span className="h-px w-3 shrink-0 bg-line2" />
+                {r}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/* Cards */}
+        <div
+          className="grid gap-4 border-t border-line pt-4"
+          style={{ gridTemplateColumns: `repeat(${project.stats.length}, 1fr)` }}
+        >
+          {project.stats.map((stat) => (
+            <div key={stat.label} className="flex flex-col gap-0.5">
+              <span className="text-base font-bold tracking-tight text-fg">{stat.value}</span>
+              <span className="text-[9px] font-medium tracking-[0.2em] uppercase text-muted opacity-50">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-auto pt-2">
+          {project.websiteUrl ? (
+            <a
+              href={project.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 transition-opacity duration-300 hover:opacity-70"
+            >
+              <span className="text-xs font-medium tracking-[0.15em] uppercase text-muted">
+                Visitar {project.websiteLabel}
+              </span>
+              <ArrowRight className="h-3 w-3 text-line2 transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+          ) : (
+            <span className="text-xs font-medium tracking-[0.15em] uppercase text-muted opacity-40">
+              {project.websiteLabel}
+            </span>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export default function Projects() {
+  return (
+    <section id="proyectos" className=" lg:py-0" data-gsap="projects-section">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+
+        <div className="mb-16 flex flex-col gap-4" data-gsap="projects-header">
+          <span className="text-xs font-medium tracking-[0.35em] uppercase text-muted">
+            04 — Proyectos
+          </span>
+          <h2 className="text-4xl font-black tracking-[-0.02em] text-fg sm:text-5xl lg:text-6xl">
+            LOGROS CLAVE
+          </h2>
+          <div className="h-px w-16 bg-line2" />
+        </div>
+
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2" data-gsap="projects-grid">
           {projects.map((project, i) => (
-            <article
-              key={project.id}
-              className="theme-card group flex flex-col overflow-hidden rounded-xl"
-              data-gsap={`project-card-${i}`}
-            >
-              {/* Image */}
-              <div className="relative h-52 overflow-hidden lg:h-64" style={{ background: "var(--c-surface2)" }}>
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-
-                {/* Dark overlay */}
-                <div className="pointer-events-none absolute inset-0 bg-black/40 transition-opacity duration-300 group-hover:bg-black/30" />
-
-                {/* Grid overlay */}
-                <div
-                  className="pointer-events-none absolute inset-0 opacity-[0.04] transition-opacity duration-300 group-hover:opacity-[0.07]"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(rgba(128,128,128,1) 1px, transparent 1px), linear-gradient(90deg, rgba(128,128,128,1) 1px, transparent 1px)",
-                    backgroundSize: "32px 32px",
-                  }}
-                />
-
-                {/* Project number */}
-                <div className="absolute bottom-4 right-5">
-                  <span
-                    className="select-none text-6xl font-black"
-                    style={{ color: "rgba(255,255,255,0.15)" }}
-                  >
-                    {project.number}
-                  </span>
-                </div>
-
-                {/* Corner marks */}
-                <div
-                  className="absolute left-4 top-4 h-5 w-5 border-l border-t transition-all duration-300 group-hover:opacity-60"
-                  style={{ borderColor: "rgba(255,255,255,0.3)" }}
-                />
-                <div
-                  className="absolute right-4 top-4 h-5 w-5 border-r border-t transition-all duration-300 group-hover:opacity-60"
-                  style={{ borderColor: "rgba(255,255,255,0.3)" }}
-                />
-
-                {/* Industry tag */}
-                <div className="absolute left-1/2 top-4 -translate-x-1/2">
-                  <span
-                    className="rounded-sm px-3 py-1.5 text-[9px] font-medium tracking-[0.25em] uppercase backdrop-blur-sm"
-                    style={{
-                      border: "1px solid rgba(255,255,255,0.2)",
-                      color: "rgba(255,255,255,0.75)",
-                      background: "rgba(0,0,0,0.35)",
-                    }}
-                  >
-                    {project.industry}
-                  </span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="flex flex-1 flex-col gap-5 p-7">
-
-                {/* Title */}
-                <h3
-                  className="text-xl font-bold leading-tight tracking-tight"
-                  style={{ color: "var(--c-fg)" }}
-                >
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm leading-relaxed" style={{ color: "var(--c-muted)" }}>
-                  {project.description}
-                </p>
-
-                {/* Responsibilities */}
-                <div className="flex flex-col gap-1.5">
-                  <span
-                    className="text-[9px] font-medium tracking-[0.3em] uppercase"
-                    style={{ color: "var(--c-muted)", opacity: 0.5 }}
-                  >
-                    Responsabilidades
-                  </span>
-                  <ul className="flex flex-col gap-1">
-                    {project.responsibilities.map((r) => (
-                      <li
-                        key={r}
-                        className="flex items-center gap-2 text-[11px] leading-snug"
-                        style={{ color: "var(--c-muted)" }}
-                      >
-                        <span
-                          className="h-px w-3 shrink-0"
-                          style={{ background: "var(--c-border2)" }}
-                        />
-                        {r}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Stats */}
-                <div
-                  className="grid gap-4 border-t pt-4"
-                  style={{
-                    borderColor: "var(--c-border)",
-                    gridTemplateColumns: `repeat(${project.stats.length}, 1fr)`,
-                  }}
-                >
-                  {/* {project.stats.map((stat) => (
-                    <div key={stat.label} className="flex flex-col gap-0.5">
-                      <span
-                        className="text-base font-bold tracking-tight"
-                        style={{ color: "var(--c-fg)" }}
-                      >
-                        {stat.value}
-                      </span>
-                      <span
-                        className="text-[9px] font-medium tracking-[0.2em] uppercase"
-                        style={{ color: "var(--c-muted)", opacity: 0.5 }}
-                      >
-                        {stat.label}
-                      </span>
-                    </div>
-                  ))} */}
-                </div>
-
-                {/* CTA */}
-                <div className="mt-auto pt-2">
-                  {project.websiteUrl ? (
-                    <a
-                      href={project.websiteUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 transition-opacity duration-300 hover:opacity-70"
-                    >
-                      <span
-                        className="text-xs font-medium tracking-[0.15em] uppercase"
-                        style={{ color: "var(--c-muted)" }}
-                      >
-                        Visitar {project.websiteLabel}
-                      </span>
-                      <svg
-                        className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1"
-                        style={{ color: "var(--c-border2)" }}
-                        viewBox="0 0 12 12"
-                        fill="none"
-                      >
-                        <path
-                          d="M2 6h8M6 2l4 4-4 4"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </a>
-                  ) : (
-                    <span
-                      className="text-xs font-medium tracking-[0.15em] uppercase"
-                      style={{ color: "var(--c-muted)", opacity: 0.4 }}
-                    >
-                      {project.websiteLabel}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </article>
+            <div key={project.id} className="h-full" data-gsap={`project-card-${i}`}>
+              <ProjectCard project={project} />
+            </div>
           ))}
         </div>
       </div>

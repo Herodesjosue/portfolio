@@ -5,6 +5,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme {
+  --color-fg:       var(--c-fg);
+  --color-muted:    #606060;
+  --color-surface:  var(--c-surface);
+  --color-surface2: var(--c-surface2);
+  --color-line:     var(--c-border);
+  --color-line2:    var(--c-border2);
+}
+
 /* ── Theme tokens ──────────────────────────────────────── */
 
 :root {
