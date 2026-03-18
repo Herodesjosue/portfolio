@@ -1,40 +1,40 @@
+import { useTranslations } from "next-intl";
 import { ArrowRight } from "./icons";
 
-const cards = [
-  {
-    emoji: "✦",
-    title: "Clean Code por defecto",
-    description:
-      "La mantenibilidad y legibilidad son el estándar de oro. Escribo código que los equipos pueden entender, escalar y evolucionar sin fricción.",
-    tag: "Principios",
-  },
-  {
-    emoji: "⚡",
-    title: "Performance como estándar",
-    description:
-      "La optimización técnica no es opcional. Cada milisegundo importa — diseño arquitecturas que entregan experiencias veloces y fluidas por defecto.",
-    tag: "Ingeniería",
-  },
-  {
-    emoji: "◈",
-    title: "UX/UI Creativo como prioridad",
-    description:
-      "El software debe ser hermoso y funcional. Fusiono narrativa visual con interacciones inmersivas para crear productos que los usuarios recuerdan.",
-    tag: "Diseño",
-  },
-];
-
 export default function Philosophy() {
+  const t = useTranslations("Philosophy");
+
+  const cards = [
+    {
+      emoji: "✦",
+      title: t("card1.title"),
+      description: t("card1.description"),
+      tag: t("card1.tag"),
+    },
+    {
+      emoji: "⚡",
+      title: t("card2.title"),
+      description: t("card2.description"),
+      tag: t("card2.tag"),
+    },
+    {
+      emoji: "◈",
+      title: t("card3.title"),
+      description: t("card3.description"),
+      tag: t("card3.tag"),
+    },
+  ];
+
   return (
     <section id="filosofia" className=" lg:py-0" data-gsap="philosophy-section">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
         <div className="mb-16 flex flex-col gap-4" data-gsap="philosophy-header">
           <span className="text-xs font-medium tracking-[0.35em] uppercase text-muted">
-            02 — Filosofía
+            {t("sectionLabel")}
           </span>
           <h2 className="text-4xl font-black tracking-[-0.02em] text-fg sm:text-5xl lg:text-6xl">
-            MI FILOSOFÍA
+            {t("sectionTitle")}
           </h2>
           <div className="h-px w-16 bg-line2" />
         </div>
@@ -43,7 +43,7 @@ export default function Philosophy() {
           {cards.map((card, i) => (
             <div
               key={card.title}
-              className="theme-card group flex flex-col justify-between gap-8 rounded-xl p-8"
+              className="theme-card group flex h-full flex-col justify-between gap-8 rounded-xl p-8"
               data-gsap={`philosophy-card-${i}`}
             >
               <div className="flex flex-col gap-5">

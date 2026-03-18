@@ -1,53 +1,44 @@
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { ArrowRight } from "./icons";
 
 interface Stat { value: string; label: string }
 
-interface Project {
+interface ProjectMeta {
   id: string;
   number: string;
-  industry: string;
   title: string;
-  description: string;
-  responsibilities: string[];
   stats: Stat[];
   websiteUrl: string;
   websiteLabel: string;
   image: string;
+  responsibilityCount: number;
 }
 
-const projects: Project[] = [
+interface Project extends ProjectMeta {
+  industry: string;
+  description: string;
+  responsibilities: string[];
+}
+
+const projectsMeta: ProjectMeta[] = [
   {
     id: "sozialens",
     number: "01",
-    industry: "AI AND SMM",
     title: "SOZIALENS",
-    description:
-      "Platform that connects businesses with thematic social media accounts to boost visibility without relying on traditional influencers. Offers customizable ad campaigns and transparent metrics for broad and targeted audiences.",
-    responsibilities: [
-      "Full-stack development (frontend & backend)",
-      "Authentication module integration",
-      "Real-time chat module development",
-      "Built with NestJS, Prisma, GraphQL & Next.js",
-    ],
     stats: [
       { value: "+250K", label: "INV. CAPTURED" },
-      { value: "+1K", label: "CLIENTS" },
+      { value: "+1K",   label: "CLIENTS" },
     ],
     websiteUrl: "",
     websiteLabel: "SOZIALENS",
     image: "/images/projects/sozialens-hero.webp",
+    responsibilityCount: 4,
   },
   {
     id: "nest",
     number: "02",
-    industry: "CRYPTO AND WEB3",
     title: "NEST",
-    description:
-      "DeFi platform on Hyperliquid merging yield strategies, automated voting, and a meme-powered identity. Features $HYPE staking, veHYPE creation, automated governance, and a built-in incentives engine.",
-    responsibilities: [
-      "Landing page development",
-    ],
     stats: [
       { value: "+25K", label: "USERS" },
       { value: "$250M", label: "TVL" },
@@ -55,69 +46,61 @@ const projects: Project[] = [
     websiteUrl: "https://NEST.io",
     websiteLabel: "NEST",
     image: "/images/projects/nest-hero.webp",
+    responsibilityCount: 1,
   },
   {
     id: "garbo",
     number: "03",
-    industry: "CYBER-SECURITY",
     title: "GARBO",
-    description:
-      "Cutting-edge platform enabling real-time virtualization of mobile devices on ARM-over-ARM architecture. Provides complete control for security research, cyber intelligence, and advanced testing at scale.",
-    responsibilities: [
-      "Landing page design & development",
-      "Product screen UI development",
-    ],
     stats: [
       { value: "$310B", label: "MARKET SHARE" },
-      { value: "$8T", label: "MARKET WORTH" },
-      { value: "37%", label: "GROWTH" },
+      { value: "$8T",   label: "MARKET WORTH" },
+      { value: "37%",   label: "GROWTH" },
     ],
     websiteUrl: "https://GARBO.io",
     websiteLabel: "GARBO",
     image: "/images/projects/garbo-hero.webp",
+    responsibilityCount: 2,
   },
   {
     id: "fenix",
     number: "04",
-    industry: "PERPS TRADING AND CRYPTO",
     title: "FENIX FINANCE",
-    description:
-      "Marketplace where protocols compete for liquidity, users earn by voting and providing funds, and traders enjoy efficient exchange—powered by Blast network's native yield.",
-    responsibilities: [
-      "Frontend development with focus on performance",
-      "Responsive optimization for desktop & mobile",
-    ],
     stats: [
       { value: "+$1.7B", label: "TRADE VOLUME" },
-      { value: "$20M", label: "OPEN INTEREST" },
-      { value: "+5K", label: "USERS" },
+      { value: "$20M",   label: "OPEN INTEREST" },
+      { value: "+5K",    label: "USERS" },
     ],
     websiteUrl: "https://FENIX.io",
     websiteLabel: "FENIX FINANCE",
     image: "/images/projects/fenix-hero.webp",
+    responsibilityCount: 2,
   },
   {
     id: "intentx",
     number: "05",
-    industry: "PERPS TRADING AND CRYPTO",
     title: "INTENTX",
-    description:
-      "Decentralized OTC derivatives platform enabling leveraged perpetual futures trading with a CEX-level experience—entirely on-chain, non-custodial, and permissionless.",
-    responsibilities: [
-      "Frontend development of the core trading module",
-    ],
     stats: [
       { value: "+$1.7B", label: "TRADE VOLUME" },
-      { value: "$20M", label: "OPEN INTEREST" },
-      { value: "+5K", label: "USERS" },
+      { value: "$20M",   label: "OPEN INTEREST" },
+      { value: "+5K",    label: "USERS" },
     ],
     websiteUrl: "https://INTENTX.io",
     websiteLabel: "INTENTX",
     image: "/images/projects/intentx-hero.webp",
+    responsibilityCount: 1,
   },
 ];
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({
+  project,
+  visitLabel,
+  responsibilitiesLabel,
+}: {
+  project: Project;
+  visitLabel: string;
+  responsibilitiesLabel: string;
+}) {
   return (
     <article className="theme-card group flex h-full flex-col overflow-hidden rounded-xl">
       <div className="relative h-52 overflow-hidden bg-surface2 lg:h-64">
@@ -158,9 +141,9 @@ function ProjectCard({ project }: { project: Project }) {
 
         <p className="text-sm leading-relaxed text-muted">{project.description}</p>
 
-        <div className="flex flex-col flex-1  gap-1.5">
+        <div className="flex flex-col flex-1 gap-1.5">
           <span className="text-[9px] font-medium tracking-[0.3em] uppercase text-muted opacity-50">
-            Responsabilidades
+            {responsibilitiesLabel}
           </span>
           <ul className="flex flex-col gap-1">
             {project.responsibilities.map((r) => (
@@ -193,7 +176,7 @@ function ProjectCard({ project }: { project: Project }) {
               className="inline-flex items-center gap-2 transition-opacity duration-300 hover:opacity-70"
             >
               <span className="text-xs font-medium tracking-[0.15em] uppercase text-muted">
-                Visitar {project.websiteLabel}
+                {visitLabel} {project.websiteLabel}
               </span>
               <ArrowRight className="h-3 w-3 text-line2 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
@@ -209,16 +192,25 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 export default function Projects() {
+  const t = useTranslations("Projects");
+
+  const projects: Project[] = projectsMeta.map((meta) => ({
+    ...meta,
+    industry: t(`${meta.id}.industry`),
+    description: t(`${meta.id}.description`),
+    responsibilities: t.raw(`${meta.id}.responsibilities`) as string[],
+  }));
+
   return (
     <section id="proyectos" className=" lg:py-0" data-gsap="projects-section">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
         <div className="mb-16 flex flex-col gap-4" data-gsap="projects-header">
           <span className="text-xs font-medium tracking-[0.35em] uppercase text-muted">
-            04 — Proyectos
+            {t("sectionLabel")}
           </span>
           <h2 className="text-4xl font-black tracking-[-0.02em] text-fg sm:text-5xl lg:text-6xl">
-            LOGROS CLAVE
+            {t("sectionTitle")}
           </h2>
           <div className="h-px w-16 bg-line2" />
         </div>
@@ -226,7 +218,11 @@ export default function Projects() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2" data-gsap="projects-grid">
           {projects.map((project, i) => (
             <div key={project.id} className="h-full" data-gsap={`project-card-${i}`}>
-              <ProjectCard project={project} />
+              <ProjectCard
+                project={project}
+                visitLabel={t("visitLabel")}
+                responsibilitiesLabel={t("responsibilitiesLabel")}
+              />
             </div>
           ))}
         </div>

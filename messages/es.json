@@ -1,0 +1,125 @@
+{
+  "Metadata": {
+    "title": "Herodes Lugo | Full Stack Developer",
+    "description": "Portfolio personal de Herodes Lugo — Full Stack Developer y Creative Engineer especializado en arquitecturas escalables, React, Next.js, Node.js y experiencias web inmersivas."
+  },
+  "Navbar": {
+    "links": {
+      "home": "Inicio",
+      "philosophy": "Filosofía",
+      "stack": "Stack",
+      "projects": "Proyectos",
+      "contact": "Contacto"
+    },
+    "downloadCV": "Descargar CV"
+  },
+  "Hero": {
+    "available": "Disponible para proyectos",
+    "headline1": "CONSTRUYENDO",
+    "headline2": "ARQUITECTURAS",
+    "headline3": "ESCALABLES",
+    "headline4": "Y",
+    "headline5": "EXPERIENCIAS INMERSIVAS.",
+    "description": "Diseño y construyo sistemas de software de alto rendimiento con foco en arquitectura limpia, UX excepcional y tecnologías de vanguardia.",
+    "ctaProjects": "Ver Proyectos",
+    "ctaContact": "Hablemos",
+    "stats": {
+      "experience": "Años exp.",
+      "projects": "Proyectos",
+      "technologies": "Tecnologías"
+    }
+  },
+  "Philosophy": {
+    "sectionLabel": "02 — Filosofía",
+    "sectionTitle": "MI FILOSOFÍA",
+    "card1": {
+      "title": "Clean Code por defecto",
+      "description": "La mantenibilidad y legibilidad son el estándar de oro. Escribo código que los equipos pueden entender, escalar y evolucionar sin fricción.",
+      "tag": "Principios"
+    },
+    "card2": {
+      "title": "Performance como estándar",
+      "description": "La optimización técnica no es opcional. Cada milisegundo importa — diseño arquitecturas que entregan experiencias veloces y fluidas por defecto.",
+      "tag": "Ingeniería"
+    },
+    "card3": {
+      "title": "UX/UI Creativo como prioridad",
+      "description": "El software debe ser hermoso y funcional. Fusiono narrativa visual con interacciones inmersivas para crear productos que los usuarios recuerdan.",
+      "tag": "Diseño"
+    }
+  },
+  "TechStack": {
+    "sectionLabel": "03 — Tecnologías",
+    "sectionTitle": "CORE TECH STACK",
+    "sectionDescription": "Herramientas que uso a diario para construir productos escalables.",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "creative": "Creative & Motion",
+      "databases": "Bases de Datos",
+      "mobile": "Mobile"
+    }
+  },
+  "Projects": {
+    "sectionLabel": "04 — Proyectos",
+    "sectionTitle": "LOGROS CLAVE",
+    "responsibilitiesLabel": "Responsabilidades",
+    "visitLabel": "Visitar",
+    "sozialens": {
+      "industry": "IA Y REDES SOCIALES",
+      "description": "Plataforma que conecta empresas con cuentas de redes sociales temáticas para impulsar la visibilidad sin depender de influencers tradicionales. Ofrece campañas publicitarias personalizables y métricas transparentes para audiencias amplias y segmentadas.",
+      "responsibilities": [
+        "Desarrollo full-stack (frontend y backend)",
+        "Integración del módulo de autenticación",
+        "Desarrollo del módulo de chat en tiempo real",
+        "Construido con NestJS, Prisma, GraphQL y Next.js"
+      ]
+    },
+    "nest": {
+      "industry": "CRIPTO Y WEB3",
+      "description": "Plataforma DeFi en Hyperliquid que fusiona estrategias de rendimiento, votación automatizada e identidad impulsada por memes. Incluye staking de $HYPE, creación de veHYPE, gobernanza automatizada y un motor de incentivos integrado.",
+      "responsibilities": [
+        "Desarrollo de landing page"
+      ]
+    },
+    "garbo": {
+      "industry": "CIBERSEGURIDAD",
+      "description": "Plataforma de vanguardia que habilita la virtualización en tiempo real de dispositivos móviles en arquitectura ARM-over-ARM. Proporciona control total para investigación de seguridad, inteligencia cibernética y pruebas avanzadas a escala.",
+      "responsibilities": [
+        "Diseño y desarrollo de landing page",
+        "Desarrollo de UI de pantalla de producto"
+      ]
+    },
+    "fenix": {
+      "industry": "TRADING DE PERPETUOS Y CRIPTO",
+      "description": "Marketplace donde los protocolos compiten por liquidez, los usuarios ganan votando y aportando fondos, y los traders disfrutan de un intercambio eficiente impulsado por el rendimiento nativo de la red Blast.",
+      "responsibilities": [
+        "Desarrollo frontend con enfoque en performance",
+        "Optimización responsive para escritorio y móvil"
+      ]
+    },
+    "intentx": {
+      "industry": "TRADING DE PERPETUOS Y CRIPTO",
+      "description": "Plataforma de derivados OTC descentralizada que permite trading de futuros perpetuos apalancados con experiencia CEX — totalmente on-chain, sin custodia y sin permisos.",
+      "responsibilities": [
+        "Desarrollo frontend del módulo core de trading"
+      ]
+    }
+  },
+  "Footer": {
+    "sectionLabel": "05 — Contacto",
+    "headline1": "¿LISTO PARA",
+    "headline2": "CONSTRUIR ALGO",
+    "headline3": "INCREÍBLE?",
+    "descriptionPre": "Si buscas a un desarrollador que vea el código como una herramienta para",
+    "descriptionHighlight": "resolver problemas reales",
+    "descriptionPost": "mediante la innovación, hablemos.",
+    "emailButton": "Escribir un Mensaje",
+    "linkedinButton": "Conectar en LinkedIn",
+    "copyright": "Copyright © 2026 Herodes Lugo. Todos los derechos reservados."
+  },
+  "ThemeToggle": {
+    "activateLight": "Activar modo claro",
+    "activateDark": "Activar modo oscuro"
+  }
+}

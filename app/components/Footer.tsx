@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { EmailIcon, LinkedInIcon } from "./icons";
 
 interface Contact {
@@ -46,13 +47,15 @@ function ContactCard({ contact }: { contact: Contact }) {
 }
 
 export default function Footer() {
+  const t = useTranslations("Footer");
+
   return (
     <footer id="contacto" className="pt-24 lg:pt-32" data-gsap="footer-section">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col items-center gap-12 text-center">
 
           <span className="text-xs font-medium tracking-[0.35em] uppercase text-muted">
-            05 — Contacto
+            {t("sectionLabel")}
           </span>
 
           <h2
@@ -60,17 +63,17 @@ export default function Footer() {
             style={{ fontSize: "clamp(2.4rem, 6vw, 5.5rem)", lineHeight: 0.9 }}
             data-gsap="footer-headline"
           >
-            ¿LISTO PARA
+            {t("headline1")}
             <br />
-            <span className="text-muted">CONSTRUIR ALGO</span>
+            <span className="text-muted">{t("headline2")}</span>
             <br />
-            INCREÍBLE?
+            {t("headline3")}
           </h2>
 
           <p className="max-w-2xl text-base leading-relaxed text-muted">
-            Si buscas a un desarrollador que vea el código como una herramienta para{" "}
-            <em className="not-italic font-semibold text-fg">resolver problemas reales</em>{" "}
-            mediante la innovación, hablemos.
+            {t("descriptionPre")}{" "}
+            <em className="not-italic font-semibold text-fg">{t("descriptionHighlight")}</em>{" "}
+            {t("descriptionPost")}
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
@@ -79,7 +82,7 @@ export default function Footer() {
               className="btn-primary inline-flex items-center gap-3 rounded-sm px-8 py-4 text-sm font-bold tracking-[0.15em] uppercase"
             >
               <EmailIcon className="size-4" />
-              Escribir un Mensaje
+              {t("emailButton")}
             </a>
             <a
               href="https://www.linkedin.com/in/herodeslugo/"
@@ -88,7 +91,7 @@ export default function Footer() {
               className="btn-outline inline-flex items-center gap-3 rounded-sm px-8 py-4 text-sm font-bold tracking-[0.15em] uppercase"
             >
               <LinkedInIcon className="size-4" />
-              Conectar en LinkedIn
+              {t("linkedinButton")}
             </a>
           </div>
 
@@ -107,7 +110,7 @@ export default function Footer() {
               HL
             </div>
             <p className="text-xs tracking-widest text-muted opacity-40">
-              Copyright © 2026 Herodes Lugo. Todos los derechos reservados.
+              {t("copyright")}
             </p>
           </div>
         </div>

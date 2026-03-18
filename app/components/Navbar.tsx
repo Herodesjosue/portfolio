@@ -1,15 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import ThemeToggle from "./ThemeToggle";
-
-const navLinks = [
-  { label: "Inicio",    href: "#inicio" },
-  { label: "Filosofía", href: "#filosofia" },
-  { label: "Stack",     href: "#stack" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Contacto",  href: "#contacto" },
-];
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const hamburgerLines = (open: boolean): React.CSSProperties[] => [
   open ? { transform: "translateY(8px) rotate(45deg)" } : {},
@@ -19,6 +13,15 @@ const hamburgerLines = (open: boolean): React.CSSProperties[] => [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const t = useTranslations("Navbar");
+
+  const navLinks = [
+    { label: t("links.home"),       href: "#inicio" },
+    { label: t("links.philosophy"), href: "#filosofia" },
+    { label: t("links.stack"),      href: "#stack" },
+    { label: t("links.projects"),   href: "#proyectos" },
+    { label: t("links.contact"),    href: "#contacto" },
+  ];
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 w-full backdrop-blur-xl">
@@ -41,6 +44,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <LanguageSwitcher />
           <ThemeToggle />
 
           <a
@@ -51,7 +55,7 @@ export default function Navbar() {
             className="btn-cv hidden rounded-sm px-4 py-2 text-xs font-medium tracking-[0.15em] uppercase md:inline-flex"
             data-gsap="cta-button"
           >
-            Descargar CV
+            {t("downloadCV")}
           </a>
 
           <button
@@ -88,7 +92,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="btn-cv mt-4 inline-flex items-center justify-center rounded-sm px-4 py-3 text-xs font-medium tracking-[0.15em] uppercase"
           >
-            Descargar CV
+            {t("downloadCV")}
           </a>
         </nav>
       </div>

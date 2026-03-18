@@ -1,54 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-
-const categories = [
-  {
-    id: "frontend",
-    number: "01",
-    label: "Frontend",
-    dotColor: "rgba(0,212,255,0.9)",
-    glow: "rgba(0,212,255,0.1)",
-    techs: ["React.js", "Next.js", "Tailwind CSS", "Zustand", "Bootstrap"],
-    span: "lg:col-span-4",
-  },
-  {
-    id: "backend",
-    number: "02",
-    label: "Backend",
-    dotColor: "rgba(124,58,237,0.9)",
-    glow: "rgba(124,58,237,0.1)",
-    techs: ["Node.js", "NestJS", "GraphQL", "Prisma ORM"],
-    span: "lg:col-span-4",
-  },
-  {
-    id: "creative",
-    number: "03",
-    label: "Creative & Motion",
-    dotColor: "rgba(255,255,255,0.7)",
-    glow: "rgba(255,255,255,0.05)",
-    techs: ["GSAP", "Three.js", "WebGL"],
-    span: "lg:col-span-4",
-  },
-  {
-    id: "databases",
-    number: "04",
-    label: "Bases de Datos",
-    dotColor: "rgba(0,212,255,0.7)",
-    glow: "rgba(0,212,255,0.07)",
-    techs: ["PostgreSQL", "MongoDB", "Supabase"],
-    span: "lg:col-span-6",
-  },
-  {
-    id: "mobile",
-    number: "05",
-    label: "Mobile",
-    dotColor: "rgba(124,58,237,0.7)",
-    glow: "rgba(124,58,237,0.07)",
-    techs: ["React Native"],
-    span: "lg:col-span-6",
-  },
-];
+import { useTranslations } from "next-intl";
 
 const allTechs = [
   "React.js", "Next.js", "TypeScript", "Node.js", "NestJS", "GraphQL",
@@ -59,6 +12,55 @@ const allTechs = [
 
 export default function TechStack() {
   const cardsRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations("TechStack");
+
+  const categories = [
+    {
+      id: "frontend",
+      number: "01",
+      label: t("categories.frontend"),
+      dotColor: "rgba(0,212,255,0.9)",
+      glow: "rgba(0,212,255,0.1)",
+      techs: ["React.js", "Next.js", "Tailwind CSS", "Zustand", "Bootstrap"],
+      span: "lg:col-span-4",
+    },
+    {
+      id: "backend",
+      number: "02",
+      label: t("categories.backend"),
+      dotColor: "rgba(124,58,237,0.9)",
+      glow: "rgba(124,58,237,0.1)",
+      techs: ["Node.js", "NestJS", "GraphQL", "Prisma ORM"],
+      span: "lg:col-span-4",
+    },
+    {
+      id: "creative",
+      number: "03",
+      label: t("categories.creative"),
+      dotColor: "rgba(255,255,255,0.7)",
+      glow: "rgba(255,255,255,0.05)",
+      techs: ["GSAP", "Three.js", "WebGL"],
+      span: "lg:col-span-4",
+    },
+    {
+      id: "databases",
+      number: "04",
+      label: t("categories.databases"),
+      dotColor: "rgba(0,212,255,0.7)",
+      glow: "rgba(0,212,255,0.07)",
+      techs: ["PostgreSQL", "MongoDB", "Supabase"],
+      span: "lg:col-span-6",
+    },
+    {
+      id: "mobile",
+      number: "05",
+      label: t("categories.mobile"),
+      dotColor: "rgba(124,58,237,0.7)",
+      glow: "rgba(124,58,237,0.07)",
+      techs: ["React Native"],
+      span: "lg:col-span-6",
+    },
+  ];
 
   useEffect(() => {
     const cards = cardsRef.current?.querySelectorAll<HTMLElement>(".stack-card");
@@ -92,14 +94,14 @@ export default function TechStack() {
 
         <div className="mb-16 flex flex-col gap-4" data-gsap="stack-header">
           <span className="text-xs font-medium tracking-[0.35em] uppercase text-muted">
-            03 — Tecnologías
+            {t("sectionLabel")}
           </span>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <h2 className="text-4xl font-black tracking-[-0.02em] text-fg sm:text-5xl lg:text-6xl">
-              CORE TECH STACK
+              {t("sectionTitle")}
             </h2>
             <p className="max-w-xs pb-1 text-sm text-muted">
-              Herramientas que uso a diario para construir productos escalables.
+              {t("sectionDescription")}
             </p>
           </div>
           <div className="h-px w-16 bg-line2" />
@@ -123,7 +125,7 @@ export default function TechStack() {
 
               <div className="mb-5 flex items-center gap-2">
                 <span
-                  className="h-1.5 w-1.5 flex-shrink-0 rounded-full"
+                  className="h-1.5 w-1.5 shrink-0 rounded-full"
                   style={{ background: cat.dotColor, boxShadow: `0 0 6px ${cat.dotColor}` }}
                 />
                 <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-muted">
@@ -156,7 +158,7 @@ export default function TechStack() {
                 >
                   {tech}
                 </span>
-                <span className="h-1 w-1 flex-shrink-0 rounded-full bg-line2" />
+                <span className="h-1 w-1 shrink-0 rounded-full bg-line2" />
               </div>
             ))}
           </div>

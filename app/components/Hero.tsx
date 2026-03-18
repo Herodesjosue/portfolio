@@ -1,12 +1,15 @@
+import { useTranslations } from "next-intl";
 import { ArrowRight } from "./icons";
 
-const stats = [
-  { value: "3+",  label: "Años exp." },
-  { value: "5+", label: "Proyectos" },
-  { value: "10+", label: "Tecnologías" },
-];
-
 export default function Hero() {
+  const t = useTranslations("Hero");
+
+  const stats = [
+    { value: "3+",  label: t("stats.experience") },
+    { value: "5+",  label: t("stats.projects") },
+    { value: "10+", label: t("stats.technologies") },
+  ];
+
   return (
     <section
       id="inicio"
@@ -16,7 +19,7 @@ export default function Hero() {
       <div className="mb-6 flex items-center gap-2.5" data-gsap="hero-status">
         <span className="blink h-2 w-2 shrink-0 rounded-full bg-emerald-400" />
         <span className="text-[10px] font-medium tracking-[0.3em] text-emerald-400/80 uppercase">
-          Disponible para proyectos
+          {t("available")}
         </span>
       </div>
 
@@ -35,20 +38,19 @@ export default function Hero() {
           data-gsap="hero-headline"
         >
           <span className="block">
-            CONSTRUYENDO{" "}
-            <span className="text-muted">ARQUITECTURAS</span>
+            {t("headline1")}{" "}
+            <span className="text-muted">{t("headline2")}</span>
           </span>
           <span className="block text-muted">
-            ESCALABLES{" "}
-            <span className="text-fg">Y</span>
+            {t("headline3")}{" "}
+            <span className="text-fg">{t("headline4")}</span>
           </span>
-          <span className="block">EXPERIENCIAS INMERSIVAS.</span>
+          <span className="block">{t("headline5")}</span>
         </h1>
 
         <div className="mt-5 flex flex-col gap-5">
           <p className="max-w-lg text-sm leading-relaxed text-muted" data-gsap="hero-desc">
-            Diseño y construyo sistemas de software de alto rendimiento con foco
-            en arquitectura limpia, UX excepcional y tecnologías de vanguardia.
+            {t("description")}
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3" data-gsap="hero-cta">
@@ -56,14 +58,14 @@ export default function Hero() {
               href="#proyectos"
               className="btn-primary inline-flex items-center gap-2 rounded-sm px-6 py-3 text-[11px] font-bold tracking-[0.18em] uppercase"
             >
-              Ver Proyectos
+              {t("ctaProjects")}
               <ArrowRight className="size-3" />
             </a>
             <a
               href="#contacto"
               className="btn-outline inline-flex items-center gap-2 rounded-sm px-6 py-3 text-[11px] font-bold tracking-[0.18em] uppercase"
             >
-              Hablemos
+              {t("ctaContact")}
             </a>
           </div>
         </div>
