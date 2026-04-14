@@ -31,7 +31,7 @@ export default function Navbar() {
           className="text-base font-black tracking-widest text-fg uppercase"
           data-gsap="logo"
         >
-          HERODES.IO
+          HERODES
         </a>
 
         <nav className="absolute right-1/2 hidden translate-x-1/2 items-center gap-10 md:flex" data-gsap="nav-links">

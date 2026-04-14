@@ -17,139 +17,101 @@ export default function TechStack() {
       id: "frontend",
       number: "01",
       label: t("categories.frontend"),
-      dotColor: "rgba(0,212,255,0.9)",
-      glow: "rgba(0,212,255,0.1)",
       techs: ["React.js", "Next.js", "Tailwind CSS", "Zustand", "Bootstrap"],
-      span: "lg:col-span-4",
     },
     {
       id: "backend",
       number: "02",
       label: t("categories.backend"),
-      dotColor: "rgba(124,58,237,0.9)",
-      glow: "rgba(124,58,237,0.1)",
       techs: ["Node.js", "NestJS", "GraphQL", "Prisma ORM"],
-      span: "lg:col-span-4",
     },
     {
       id: "creative",
       number: "03",
       label: t("categories.creative"),
-      dotColor: "rgba(100,100,120,0.7)",
-      glow: "rgba(100,100,120,0.05)",
       techs: ["GSAP", "Three.js", "WebGL"],
-      span: "lg:col-span-4",
     },
     {
       id: "databases",
       number: "04",
       label: t("categories.databases"),
-      dotColor: "rgba(0,212,255,0.7)",
-      glow: "rgba(0,212,255,0.07)",
       techs: ["PostgreSQL", "MongoDB", "Supabase"],
-      span: "lg:col-span-6",
     },
     {
       id: "mobile",
       number: "05",
       label: t("categories.mobile"),
-      dotColor: "rgba(124,58,237,0.7)",
-      glow: "rgba(124,58,237,0.07)",
       techs: ["React Native"],
-      span: "lg:col-span-6",
     },
   ];
 
   return (
-    <section id="stack" className="py-24 lg:py-32" data-gsap="stack-section">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section id="stack" className="py-24 lg:py-40 bg-surface2" data-gsap="stack-section">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col gap-24 lg:gap-32">
 
-        <div className="mb-16 flex flex-col gap-4" data-gsap="stack-header">
-          <span
-            className="text-xs font-medium tracking-[0.35em] uppercase text-muted"
-            data-reveal="fade-in"
-          >
-            {t("sectionLabel")}
-          </span>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <h2
-              className="text-4xl font-black tracking-[-0.02em] text-fg sm:text-5xl lg:text-6xl"
-              data-reveal="fade-up"
-              data-reveal-delay="100"
-            >
-              {t("sectionTitle")}
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end justify-between" data-reveal="fade-up">
+          <div className="flex flex-col gap-6">
+            <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted">
+              {t("sectionLabel")}
+            </span>
+            <h2 className="text-5xl lg:text-[7rem] leading-[0.85] font-black tracking-tighter text-fg uppercase">
+              TECH<br />STACK.
             </h2>
-            <p
-              className="max-w-xs pb-1 text-sm text-muted"
-              data-reveal="fade-left"
-              data-reveal-delay="200"
-            >
+          </div>
+          <div className="max-w-[320px] lg:mb-4 lg:text-right">
+            <p className="font-mono text-xs leading-relaxed text-muted lowercase">
               {t("sectionDescription")}
             </p>
           </div>
-          <div className="h-px w-16 bg-line2" data-reveal="fade-left" data-reveal-delay="250" />
         </div>
 
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-12">
+        {/* Agency-style index list instead of cards */}
+        <div className="flex flex-col border-t-2 border-fg">
           {categories.map((cat, idx) => (
-            <div
-              key={cat.id}
-              className={`theme-card group relative overflow-hidden rounded-xl p-6 ${cat.span}`}
-              data-reveal="scale-in"
-              data-reveal-delay={`${300 + idx * 100}`}
+            <div 
+              key={cat.id} 
+              className="group flex flex-col lg:flex-row lg:items-center py-10 lg:py-16 border-b border-border gap-8 hover:bg-fg/5 transition-colors duration-500"
+              data-reveal="fade-up"
+              data-reveal-delay={`${100 + idx * 100}`}
             >
-              <div
-                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                style={{ background: `radial-gradient(ellipse at 30% 40%, ${cat.glow} 0%, transparent 70%)` }}
-              />
-
-              <div className="absolute right-5 top-5">
-                <span className="font-mono text-[10px] tracking-[0.2em] text-line2">{cat.number}</span>
-              </div>
-
-              <div className="mb-5 flex items-center gap-2">
-                <span
-                  className="h-1.5 w-1.5 shrink-0 rounded-full"
-                  style={{ background: cat.dotColor, boxShadow: `0 0 6px ${cat.dotColor}` }}
-                />
-                <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-muted">
-                  {cat.label}
+              <div className="flex items-center gap-12 lg:w-[40%] px-4">
+                <span className="font-mono text-2xl lg:text-4xl text-muted/30 group-hover:text-fg transition-colors duration-500">
+                  {cat.number}
                 </span>
+                <h3 className="text-2xl lg:text-3xl font-black tracking-tight uppercase text-fg">
+                  {cat.label}
+                </h3>
               </div>
-
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap lg:justify-end gap-x-6 gap-y-4 lg:w-[60%] px-4 lg:px-8">
                 {cat.techs.map((tech) => (
-                  <span key={tech} className="tech-pill cursor-default rounded-sm px-3 py-1.5 text-xs font-medium">
-                    {tech}
+                  <span 
+                    key={tech} 
+                    className="font-mono text-[10px] lg:text-xs tracking-widest uppercase text-muted group-hover:text-fg transition-colors duration-500"
+                  >
+                    [ {tech} ]
                   </span>
                 ))}
               </div>
-
-              <div
-                className="absolute bottom-0 left-0 h-px w-0 transition-all duration-500 group-hover:w-full"
-                style={{ background: `linear-gradient(90deg, ${cat.dotColor}, transparent)` }}
-              />
             </div>
           ))}
         </div>
 
-        <div
-          className="mt-12 overflow-hidden border-y border-line py-4"
-          data-reveal="fade-in"
-          data-reveal-delay="800"
-        >
-          <div className="marquee-track select-none">
-            {[...allTechs, ...allTechs].map((tech, i) => (
-              <div key={i} className="flex items-center gap-5 px-5">
-                <span
-                  className="cursor-default whitespace-nowrap text-xs font-medium tracking-[0.2em] uppercase text-muted opacity-40 transition-opacity duration-200 hover:opacity-90"
-                >
-                  {tech}
-                </span>
-                <span className="h-1 w-1 shrink-0 rounded-full bg-line2" />
-              </div>
-            ))}
-          </div>
+      </div>
+
+      {/* Marquee ticker placed completely at bottom and stripped to raw text */}
+      <div 
+        className="mt-32 border-y border-border py-6 overflow-hidden bg-bg"
+        data-reveal="fade-in"
+      >
+        <div className="marquee-track select-none flex items-center">
+          {[...allTechs, ...allTechs].map((tech, i) => (
+            <div key={i} className="flex items-center gap-8 px-8">
+              <span className="font-mono whitespace-nowrap text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-fg">
+                {tech}
+              </span>
+              <span className="text-muted/30 font-mono text-[10px]">//</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

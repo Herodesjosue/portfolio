@@ -38,8 +38,8 @@ export default function Philosophy() {
           </div>
 
           <div 
-            className="group relative w-full aspect-[4/5] bg-line2 overflow-hidden"
-            data-reveal="clip-up"
+            className="group relative w-full aspect-[4/5] bg-line2 overflow-hidden mt-8"
+            data-reveal="fade-in"
             data-reveal-delay="200"
           >
             <Image 
