@@ -37,7 +37,7 @@ export default function Philosophy() {
           </div>
 
           <div 
-            className="group relative w-full aspect-[4/5] bg-black overflow-hidden mt-8"
+            className="group relative w-full aspect-[4/5] overflow-hidden mt-8"
             data-reveal="fade-in"
             data-reveal-delay="200"
           >
@@ -48,11 +48,11 @@ export default function Philosophy() {
               muted
               loop
               playsInline
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              className="absolute inset-0 h-full w-full object-cover  transition-transform duration-1000 group-hover:scale-105"
             />
 
             {/* Filtro oscuro sobre el video */}
-            <div className="absolute inset-0 bg-[#131414]/60 pointer-events-none" />
+            {/* <div className="absolute inset-0 bg-[#131414]/90 pointer-events-none" /> */}
             {/* Viñeta suave en bordes */}
             <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%)' }} />
 
@@ -69,7 +69,7 @@ export default function Philosophy() {
         </div>
 
         {/* Right Side: Philosophy Items */}
-        <div className="flex flex-col lg:w-[55%] justify-center gap-16 lg:py-24">
+        <div className="flex flex-col lg:w-[55%] justify-end gap-16 lg:py-24 ">
           {items.map((item, i) => (
             <div 
               key={item.number} 

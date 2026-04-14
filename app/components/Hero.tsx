@@ -10,9 +10,9 @@ export default function Hero() {
       data-gsap="hero-section"
     >
       {/* Editorial Animated Background */}
-      <div className="absolute inset-0 -z-10 h-full w-full pointer-events-none">
+      <div className="absolute inset-0 -z-10 h-full w-full  pointer-events-none">
         {/* Animated Grid with fade radial mask so it dissipates at the bottom */}
-        <div className="absolute inset-0 grid-pattern animate-grid-pan [mask-image:radial-gradient(ellipse_70%_70%_at_50%_0%,#000_50%,transparent_100%)]" />
+        <div className="absolute inset-0 grid-pattern animate-grid-pan " />
         {/* SVG Texture Grain Overlay */}
         <div className="absolute inset-0 bg-noise mix-blend-multiply" />
       </div>
