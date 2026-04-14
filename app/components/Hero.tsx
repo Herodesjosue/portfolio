@@ -6,9 +6,17 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-screen w-full flex-col px-6 pb-12 pt-28 lg:px-12 "
+      className="relative flex min-h-screen w-full flex-col overflow-hidden px-6 pb-12 pt-28 lg:px-12"
       data-gsap="hero-section"
     >
+      {/* Editorial Animated Background */}
+      <div className="absolute inset-0 -z-10 h-full w-full pointer-events-none">
+        {/* Animated Grid with fade radial mask so it dissipates at the bottom */}
+        <div className="absolute inset-0 grid-pattern animate-grid-pan [mask-image:radial-gradient(ellipse_70%_70%_at_50%_0%,#000_50%,transparent_100%)]" />
+        {/* SVG Texture Grain Overlay */}
+        <div className="absolute inset-0 bg-noise mix-blend-multiply" />
+      </div>
+
       <div className="flex flex-1 flex-col justify-center gap-4">
         <h1
           className="flex flex-col font-black tracking-[-0.04em] uppercase"
