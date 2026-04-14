@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-screen w-full flex-col px-6 pb-12 pt-28 lg:px-12"
+      className="relative flex min-h-screen w-full flex-col px-6 pb-12 pt-28 lg:px-12 "
       data-gsap="hero-section"
     >
       <div className="flex flex-1 flex-col justify-center gap-4">
@@ -19,7 +19,7 @@ export default function Hero() {
           </span>
           <span 
             className="text-transparent" 
-            style={{ WebkitTextStroke: "2px var(--c-fg)" }}
+            style={{ WebkitTextStroke: "2px var(--color-fg)" }}
             data-reveal="fade-up" 
             data-reveal-delay="300"
           >

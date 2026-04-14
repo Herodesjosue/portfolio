@@ -7,7 +7,7 @@ export default function Footer() {
   const t = useTranslations("Footer");
 
   return (
-    <footer id="contacto" className="bg-surface2 text-fg flex flex-col">
+    <footer id="contacto" className=" text-fg flex flex-col">
       
       {/* ── Contact Agency Section ──────────────────────────────── */}
       <div className="w-full flex justify-center py-24 lg:py-40 px-6 lg:px-12" data-gsap="footer-section">
@@ -25,7 +25,7 @@ export default function Footer() {
             >
               LET'S BUILD
               <br />
-              <span className="text-transparent" style={{ WebkitTextStroke: "2px var(--c-fg)" }}>
+              <span className="text-transparent" style={{ WebkitTextStroke: "2px var(--color-fg)" }}>
                 THE FUTURE.
               </span>
             </h2>
@@ -72,25 +72,28 @@ export default function Footer() {
                    </label>
                    <textarea 
                       required
-                      className="w-full bg-transparent border-b border-fg/20 py-4 font-black uppercase text-xl lg:text-2xl text-fg focus:outline-none focus:border-fg transition-colors resize-none placeholder:text-fg/10 h-32" 
+                      rows={1}
+                      onInput={(e) => {
+                         e.currentTarget.style.height = 'auto';
+                         e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+                      }}
+                      className="w-full bg-transparent border-b border-fg/20 py-4 font-black uppercase text-xl lg:text-2xl text-fg focus:outline-none focus:border-fg transition-colors resize-none overflow-hidden placeholder:text-fg/10" 
                       placeholder="TELL ME ABOUT YOUR PROJECT..." 
                    />
                 </div>
 
-                {/* Big Animated Circular Submit Button */}
-                <div className="mt-8 flex justify-start lg:justify-end">
+                <div className="mt-12 w-full flex justify-start lg:justify-end">
                    <button 
                       type="submit" 
-                      className="group relative flex h-40 w-40 lg:h-48 lg:w-48 items-center justify-center rounded-full bg-fg text-surface transition-transform duration-500 hover:scale-105"
+                      className="group relative inline-flex w-full sm:w-auto items-center justify-center px-12 py-6 lg:px-20 lg:py-8 bg-cta text-white transition-transform duration-500 hover:scale-105 overflow-visible"
                    >
-                      {/* Subliminal slow pulse to entice click */}
-                      <div className="absolute inset-0 rounded-full border border-fg animate-ping opacity-20" style={{ animationDuration: '3s' }} />
-                      <div className="absolute inset-0 rounded-full border border-fg scale-110 opacity-20 group-hover:scale-125 group-hover:opacity-0 transition-all duration-700" />
+                      <div className="absolute inset-0 border border-cta animate-ping opacity-20" style={{ animationDuration: '3s' }} />
+                      <div className="absolute inset-0 border border-cta opacity-20 group-hover:scale-y-125 group-hover:scale-x-105 group-hover:opacity-0 transition-all duration-700" />
                       
-                      <span className="font-mono text-[10px] lg:text-[11px] font-bold tracking-[0.2em] uppercase origin-center transform group-hover:rotate-12 transition-transform duration-300">
-                        Start
-                        <br/>Project
-                        <br/>→
+                      {/* Enforcing z-index to ensure text is above the absolute overlays and clearly white */}
+                      <span className="relative z-10 font-mono text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-4">
+                        Start Project
+                        <span className="transform group-hover:translate-x-2 transition-transform duration-300">→</span>
                       </span>
                    </button>
                 </div>

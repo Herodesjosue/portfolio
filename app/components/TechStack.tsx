@@ -46,7 +46,7 @@ export default function TechStack() {
   ];
 
   return (
-    <section id="stack" className="py-24 lg:py-40 bg-surface2" data-gsap="stack-section">
+    <section id="stack" className="py-24 lg:py-40 " data-gsap="stack-section">
       <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col gap-24 lg:gap-32">
 
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end justify-between" data-reveal="fade-up">
