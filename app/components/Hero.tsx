@@ -49,7 +49,7 @@ export default function Hero() {
       <div className="mt-16 flex w-full flex-col items-start justify-between gap-12 md:flex-row md:items-end lg:mt-24">
         <div className="flex flex-col gap-6" data-reveal="fade-up" data-reveal-delay="700">
           <p className="font-mono text-[10px] tracking-[0.25em] text-fg uppercase">
-            // SCALABLE WEB SOLUTIONS.
+            {"// SCALABLE WEB SOLUTIONS."}
           </p>
           <a
             href="#proyectos"

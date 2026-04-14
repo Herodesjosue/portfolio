@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 
 export default function Philosophy() {
   const t = useTranslations("Philosophy");
@@ -38,34 +37,33 @@ export default function Philosophy() {
           </div>
 
           <div 
-            className="group relative w-full aspect-[4/5] bg-white/5 overflow-hidden mt-8"
+            className="group relative w-full aspect-[4/5] bg-black overflow-hidden mt-8"
             data-reveal="fade-in"
             data-reveal-delay="200"
           >
-            <Image 
-              src="/images/philosophy-video-placeholder.png" 
-              alt="Philosophy Concept" 
-              fill 
-              className="object-cover grayscale transition-transform duration-1000 group-hover:scale-105 opacity-90"
+            {/* Video de fondo */}
+            <video
+              src="/videos/codigo.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
-            {/* Overlay Grid */}
-            <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
-            
-            {/* Play/Video Indicator UI */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-               <div className="h-16 w-16 border border-white/30 rounded-full flex items-center justify-center backdrop-blur-sm bg-white/10 transition-transform duration-500 group-hover:scale-110">
-                  <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1" />
-               </div>
-            </div>
+
+            {/* Filtro oscuro sobre el video */}
+            <div className="absolute inset-0 bg-[#131414]/60 pointer-events-none" />
+            {/* Viñeta suave en bordes */}
+            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%)' }} />
 
             {/* Corner Details */}
-            <div className="absolute top-4 flex w-full justify-between px-4 font-mono text-[9px] tracking-widest text-white/80 uppercase">
+            <div className="absolute top-4 flex w-full justify-between px-4 font-mono text-[9px] tracking-widest text-white/70 uppercase">
                <span>[REC]</span>
-               <span className="animate-pulse text-red-500/80">●</span>
+               <span className="animate-pulse text-red-500/70">●</span>
             </div>
-            <div className="absolute bottom-4 flex w-full justify-between px-4 font-mono text-[9px] tracking-widest text-white/80 uppercase">
-               <span>CONCEPT_V1.MP4</span>
-               <span>1080P // 60FPS</span>
+            <div className="absolute bottom-4 flex w-full justify-between px-4 font-mono text-[9px] tracking-widest text-white/70 uppercase">
+               <span>CODIGO.MP4</span>
+               <span>LIVE // AUTOPLAY</span>
             </div>
           </div>
         </div>

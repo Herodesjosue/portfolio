@@ -108,7 +108,7 @@ export default function Footer() {
         
         {/* Left: Branding */}
         <div className="flex items-center gap-4">
-          <span className="text-sm font-black tracking-widest uppercase">HERODES.IO</span>
+          <span className="text-sm font-black tracking-widest uppercase">HERODES</span>
           <span className="block h-4 w-px bg-border" />
           <span className="font-mono text-[9px] uppercase tracking-widest text-muted/60">
              Creative Developer

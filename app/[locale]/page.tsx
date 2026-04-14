@@ -5,10 +5,12 @@ import TechStack from "../components/TechStack";
 import Projects from "../components/Projects";
 import Footer from "../components/Footer";
 import ScrollAnimator from "../components/ScrollAnimator";
+import IntroLoader from "../components/IntroLoader";
 
 export default function Home() {
   return (
     <>
+      <IntroLoader />
       <ScrollAnimator />
       <Navbar />
       <main>
