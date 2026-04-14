@@ -62,9 +62,13 @@
   },
   "Projects": {
     "sectionLabel": "04 — Projects",
-    "sectionTitle": "KEY ACHIEVEMENTS",
+    "sectionTitle": "FEATURED PROJECTS",
+    "sectionDescription": "Projects developed in collaboration with Esthetiqo Studio, where I actively participated in the design and development of each product.",
     "responsibilitiesLabel": "Responsibilities",
+    "contributionLabel": "My contribution",
     "visitLabel": "Visit",
+    "studioNote": "Developed with",
+    "studioLabel": "Esthetiqo Studio",
     "sozialens": {
       "industry": "AI AND SMM",
       "description": "Platform that connects businesses with thematic social media accounts to boost visibility without relying on traditional influencers. Offers customizable ad campaigns and transparent metrics for broad and targeted audiences.",

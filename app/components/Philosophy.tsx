@@ -1,73 +1,101 @@
 import { useTranslations } from "next-intl";
-import { ArrowRight } from "./icons";
+import Image from "next/image";
 
 export default function Philosophy() {
   const t = useTranslations("Philosophy");
 
-  const cards = [
+  const items = [
     {
-      emoji: "✦",
+      number: "01",
       title: t("card1.title"),
       description: t("card1.description"),
-      tag: t("card1.tag"),
     },
     {
-      emoji: "⚡",
+      number: "02",
       title: t("card2.title"),
       description: t("card2.description"),
-      tag: t("card2.tag"),
     },
     {
-      emoji: "◈",
+      number: "03",
       title: t("card3.title"),
       description: t("card3.description"),
-      tag: t("card3.tag"),
     },
   ];
 
   return (
-    <section id="filosofia" className=" lg:py-0" data-gsap="philosophy-section">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section id="filosofia" className="py-24 lg:py-40 bg-[#E8E4DB]" data-gsap="philosophy-section">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col lg:flex-row gap-16 lg:gap-24">
+        
+        {/* Left Side: Headline & Media Placeholder */}
+        <div className="flex flex-col lg:w-[45%] gap-12 lg:sticky lg:top-32 h-fit">
+          <div className="flex flex-col gap-6" data-reveal="fade-up">
+            <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted">
+              {t("sectionLabel")}
+            </span>
+            <h2 className="text-5xl lg:text-[5rem] leading-[0.85] font-black tracking-tighter text-fg uppercase" style={{ wordBreak: 'keep-all' }}>
+              {t("sectionTitle") || "THE ETHOS"}
+            </h2>
+          </div>
 
-        <div className="mb-16 flex flex-col gap-4" data-gsap="philosophy-header">
-          <span className="text-xs font-medium tracking-[0.35em] uppercase text-muted">
-            {t("sectionLabel")}
-          </span>
-          <h2 className="text-4xl font-black tracking-[-0.02em] text-fg sm:text-5xl lg:text-6xl">
-            {t("sectionTitle")}
-          </h2>
-          <div className="h-px w-16 bg-line2" />
+          <div 
+            className="group relative w-full aspect-[4/5] bg-line2 overflow-hidden"
+            data-reveal="clip-up"
+            data-reveal-delay="200"
+          >
+            <Image 
+              src="/images/philosophy-video-placeholder.png" 
+              alt="Philosophy Concept" 
+              fill 
+              className="object-cover grayscale transition-transform duration-1000 group-hover:scale-105 opacity-90"
+            />
+            {/* Overlay Grid */}
+            <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
+            
+            {/* Play/Video Indicator UI */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+               <div className="h-16 w-16 border border-bg/30 rounded-full flex items-center justify-center backdrop-blur-sm bg-fg/10 transition-transform duration-500 group-hover:scale-110">
+                  <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-[#F2EFE9] border-b-[6px] border-b-transparent ml-1" />
+               </div>
+            </div>
+
+            {/* Corner Details */}
+            <div className="absolute top-4 flex w-full justify-between px-4 font-mono text-[9px] tracking-widest text-[#F2EFE9]/80 uppercase">
+               <span>[REC]</span>
+               <span className="animate-pulse text-red-500/80">●</span>
+            </div>
+            <div className="absolute bottom-4 flex w-full justify-between px-4 font-mono text-[9px] tracking-widest text-[#F2EFE9]/80 uppercase">
+               <span>CONCEPT_V1.MP4</span>
+               <span>1080P // 60FPS</span>
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3" data-gsap="philosophy-cards">
-          {cards.map((card, i) => (
-            <div
-              key={card.title}
-              className="theme-card group flex h-full flex-col justify-between gap-8 rounded-xl p-8"
-              data-gsap={`philosophy-card-${i}`}
+        {/* Right Side: Philosophy Items */}
+        <div className="flex flex-col lg:w-[55%] justify-center gap-16 lg:py-24">
+          {items.map((item, i) => (
+            <div 
+              key={item.number} 
+              className="flex flex-col gap-6 group"
+              data-reveal="fade-up"
+              data-reveal-delay={`${200 + i * 150}`}
             >
-              <div className="flex flex-col gap-5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-line2 text-lg text-fg transition-all duration-300">
-                  {card.emoji}
-                </div>
-                <h3 className="text-xl font-bold leading-tight tracking-tight text-fg">
-                  {card.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted">
-                  {card.description}
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-medium tracking-[0.25em] uppercase text-muted opacity-50">
-                  {card.tag}
+              <div className="flex items-baseline gap-6 border-b border-border pb-6">
+                <span className="font-mono text-3xl font-regular tracking-tighter text-fg/20 transition-colors duration-300 group-hover:text-fg">
+                  {item.number}
                 </span>
-                <div className="mx-4 h-px flex-1 bg-line" />
-                <ArrowRight className="h-3 w-3 text-line2 transition-all duration-300 group-hover:translate-x-0.5" />
+                <div className="flex flex-col gap-4">
+                  <h3 className="text-2xl lg:text-3xl font-black uppercase text-fg tracking-tight">
+                    {item.title}
+                  </h3>
+                  <p className="font-mono text-[11px] leading-relaxed tracking-wider text-muted lowercase pr-4">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

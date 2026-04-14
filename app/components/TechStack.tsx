@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 
 const allTechs = [
@@ -11,7 +10,6 @@ const allTechs = [
 ];
 
 export default function TechStack() {
-  const cardsRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("TechStack");
 
   const categories = [
@@ -37,8 +35,8 @@ export default function TechStack() {
       id: "creative",
       number: "03",
       label: t("categories.creative"),
-      dotColor: "rgba(255,255,255,0.7)",
-      glow: "rgba(255,255,255,0.05)",
+      dotColor: "rgba(100,100,120,0.7)",
+      glow: "rgba(100,100,120,0.05)",
       techs: ["GSAP", "Three.js", "WebGL"],
       span: "lg:col-span-4",
     },
@@ -62,57 +60,43 @@ export default function TechStack() {
     },
   ];
 
-  useEffect(() => {
-    const cards = cardsRef.current?.querySelectorAll<HTMLElement>(".stack-card");
-    if (!cards) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry, idx) => {
-          if (entry.isIntersecting) {
-            const el = entry.target as HTMLElement;
-            el.style.animationDelay = `${idx * 80}ms`;
-            el.classList.add("stack-card-visible");
-            observer.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    cards.forEach((card) => {
-      card.style.opacity = "0";
-      observer.observe(card);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section id="stack" className="py-24 lg:py-32" data-gsap="stack-section">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
         <div className="mb-16 flex flex-col gap-4" data-gsap="stack-header">
-          <span className="text-xs font-medium tracking-[0.35em] uppercase text-muted">
+          <span
+            className="text-xs font-medium tracking-[0.35em] uppercase text-muted"
+            data-reveal="fade-in"
+          >
             {t("sectionLabel")}
           </span>
           <div className="flex flex-wrap items-end justify-between gap-6">
-            <h2 className="text-4xl font-black tracking-[-0.02em] text-fg sm:text-5xl lg:text-6xl">
+            <h2
+              className="text-4xl font-black tracking-[-0.02em] text-fg sm:text-5xl lg:text-6xl"
+              data-reveal="fade-up"
+              data-reveal-delay="100"
+            >
               {t("sectionTitle")}
             </h2>
-            <p className="max-w-xs pb-1 text-sm text-muted">
+            <p
+              className="max-w-xs pb-1 text-sm text-muted"
+              data-reveal="fade-left"
+              data-reveal-delay="200"
+            >
               {t("sectionDescription")}
             </p>
           </div>
-          <div className="h-px w-16 bg-line2" />
+          <div className="h-px w-16 bg-line2" data-reveal="fade-left" data-reveal-delay="250" />
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-12">
-          {categories.map((cat) => (
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-12">
+          {categories.map((cat, idx) => (
             <div
               key={cat.id}
-              className={`stack-card theme-card group relative overflow-hidden rounded-xl p-6 ${cat.span}`}
-              style={{ opacity: 0 }}
+              className={`theme-card group relative overflow-hidden rounded-xl p-6 ${cat.span}`}
+              data-reveal="scale-in"
+              data-reveal-delay={`${300 + idx * 100}`}
             >
               <div
                 className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -149,7 +133,11 @@ export default function TechStack() {
           ))}
         </div>
 
-        <div className="mt-12 overflow-hidden border-y border-line py-4">
+        <div
+          className="mt-12 overflow-hidden border-y border-line py-4"
+          data-reveal="fade-in"
+          data-reveal-delay="800"
+        >
           <div className="marquee-track select-none">
             {[...allTechs, ...allTechs].map((tech, i) => (
               <div key={i} className="flex items-center gap-5 px-5">

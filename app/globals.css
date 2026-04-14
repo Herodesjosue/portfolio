@@ -7,33 +7,33 @@
 
 @theme {
   --color-fg:       var(--c-fg);
-  --color-muted:    #606060;
+  --color-muted:    var(--c-muted);
   --color-surface:  var(--c-surface);
   --color-surface2: var(--c-surface2);
   --color-line:     var(--c-border);
   --color-line2:    var(--c-border2);
 }
 
-/* ── Theme tokens ──────────────────────────────────────── */
+/* ── Theme tokens (Light default) ─────────────────────── */
 
 :root {
-  --c-bg:       #131414;
-  --c-surface:  #1c1d1d;
-  --c-surface2: #232424;
-  --c-fg:       #ffffff;
-  --c-muted:    #a0a0a0;
-  --c-border:   rgba(255, 255, 255, 0.07);
-  --c-border2:  rgba(255, 255, 255, 0.14);
+  --c-bg:       #F2EFE9;
+  --c-surface:  #E8E4DB;
+  --c-surface2: #DFDBD1;
+  --c-fg:       #131313;
+  --c-muted:    #5A5854;
+  --c-border:   rgba(19, 19, 19, 0.1);
+  --c-border2:  rgba(19, 19, 19, 0.2);
 }
 
-html.light {
-  --c-bg:       #f5f5f5;
-  --c-surface:  #ffffff;
-  --c-surface2: #ebebeb;
-  --c-fg:       #131414;
-  --c-muted:    #606060;
-  --c-border:   rgba(0, 0, 0, 0.07);
-  --c-border2:  rgba(0, 0, 0, 0.15);
+html.dark {
+  --c-bg:       #F2EFE9;
+  --c-surface:  #E8E4DB;
+  --c-surface2: #DFDBD1;
+  --c-fg:       #131313;
+  --c-muted:    #5A5854;
+  --c-border:   rgba(19, 19, 19, 0.1);
+  --c-border2:  rgba(19, 19, 19, 0.2);
 }
 
 /* ── Base ───────────────────────────────────────────────── */
@@ -60,8 +60,52 @@ body {
   color: var(--c-fg);
 }
 
-/* ── Hide quantum canvas in light mode ─────────────────── */
-html.light #quantum-canvas { display: none; }
+/* ── Scroll Reveal System ──────────────────────────────── */
+
+[data-reveal] {
+  opacity: 0;
+  transition-property: opacity, transform, filter;
+  transition-duration: 0.9s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+[data-reveal="fade-up"] {
+  transform: translateY(50px);
+}
+
+[data-reveal="fade-down"] {
+  transform: translateY(-30px);
+}
+
+[data-reveal="fade-left"] {
+  transform: translateX(-50px);
+}
+
+[data-reveal="fade-right"] {
+  transform: translateX(50px);
+}
+
+[data-reveal="scale-in"] {
+  transform: scale(0.92);
+  filter: blur(4px);
+}
+
+[data-reveal="fade-in"] {
+  /* opacity only */
+}
+
+[data-reveal="clip-up"] {
+  clip-path: inset(100% 0 0 0);
+  transform: translateY(20px);
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  clip-path: inset(0 0 0 0);
+}
 
 /* ── Keyframes ──────────────────────────────────────────── */
 
@@ -93,6 +137,10 @@ html.light #quantum-canvas { display: none; }
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.2; }
 }
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
 
 /* ── Utilities ──────────────────────────────────────────── */
 
@@ -100,14 +148,14 @@ html.light #quantum-canvas { display: none; }
 
   /* Navbar glassmorphism */
   .glass-nav {
-    background-color: rgba(19, 20, 20, 0.85);
-    backdrop-filter: blur(12px);
+    background-color: rgba(245, 245, 245, 0.85);
+    backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--c-border);
     transition: background-color 0.35s ease;
   }
-  html.light .glass-nav {
-    background-color: rgba(245, 245, 245, 0.90);
+  html.dark .glass-nav {
+    background-color: rgba(19, 20, 20, 0.85);
   }
 
   /* Nav link */
@@ -131,9 +179,16 @@ html.light #quantum-canvas { display: none; }
   .theme-card {
     background-color: var(--c-surface);
     border: 1px solid var(--c-border);
-    transition: background-color 0.35s ease, border-color 0.3s ease;
+    transition: background-color 0.35s ease, border-color 0.3s ease,
+      box-shadow 0.3s ease;
   }
-  .theme-card:hover { border-color: var(--c-border2); }
+  .theme-card:hover {
+    border-color: var(--c-border2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  }
+  html.dark .theme-card:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
 
   /* Buttons */
   .btn-primary {
@@ -145,10 +200,10 @@ html.light #quantum-canvas { display: none; }
   .btn-primary:hover {
     opacity: 0.88;
     transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.12);
-  }
-  html.light .btn-primary:hover {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  }
+  html.dark .btn-primary:hover {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.12);
   }
 
   .btn-outline {
@@ -216,6 +271,84 @@ html.light #quantum-canvas { display: none; }
 
   /* Misc */
   .blink { animation: blink-dot 1.5s ease-in-out infinite; }
+
+  /* ── Project Showcase ────────────────────────────────── */
+
+  .project-showcase {
+    background-color: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.4s ease;
+  }
+  .project-showcase:hover {
+    border-color: var(--c-border2);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  }
+  html.dark .project-showcase:hover {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  }
+
+  .project-hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.15) 50%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+  }
+
+  .project-grid-overlay {
+    background-image:
+      linear-gradient(rgba(128, 128, 128, 0.6) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(128, 128, 128, 0.6) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.04;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-showcase:hover .project-grid-overlay {
+    opacity: 0.07;
+  }
+
+  .project-number {
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.12);
+    user-select: none;
+  }
+
+  .project-industry-badge {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .studio-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--c-border);
+    background: var(--c-surface2);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    transition: border-color 0.3s ease;
+  }
+  .studio-badge::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(0, 212, 255, 0.7);
+    box-shadow: 0 0 6px rgba(0, 212, 255, 0.4);
+  }
 
   /* Orbit rings */
   .orbit-ring {

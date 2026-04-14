@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import ThemeToggle from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 const hamburgerLines = (open: boolean): React.CSSProperties[] => [
@@ -16,47 +15,35 @@ export default function Navbar() {
   const t = useTranslations("Navbar");
 
   const navLinks = [
-    { label: t("links.home"),       href: "#inicio" },
-    { label: t("links.philosophy"), href: "#filosofia" },
-    { label: t("links.stack"),      href: "#stack" },
-    { label: t("links.projects"),   href: "#proyectos" },
-    { label: t("links.contact"),    href: "#contacto" },
+    { label: "01 / HOME",       href: "#inicio" },
+    { label: "02 / PHILOSOPHY", href: "#filosofia" },
+    { label: "03 / STACK",      href: "#stack" },
+    { label: "04 / PROJECTS",   href: "#proyectos" },
+    { label: "05 / CONTACT",    href: "#contacto" },
   ];
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 w-full backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:h-24 lg:px-8">
+    <header className="fixed left-0 right-0 top-0 z-50 w-full bg-transparent text-fg">
+      <div className="mx-auto flex h-20 w-full items-center justify-between px-6 lg:px-12">
 
         <a
           href="#inicio"
-          className="flex h-9 w-9 items-center justify-center rounded-sm border border-line2 text-sm font-black tracking-tighter text-fg transition-all duration-300"
+          className="text-base font-black tracking-widest text-fg uppercase"
           data-gsap="logo"
         >
-          HL
+          HERODES.IO
         </a>
 
-        <nav className="absolute right-1/2 hidden translate-x-1/2 items-center gap-8 md:flex" data-gsap="nav-links">
+        <nav className="absolute right-1/2 hidden translate-x-1/2 items-center gap-10 md:flex" data-gsap="nav-links">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="nav-link text-xs font-medium tracking-[0.15em] uppercase">
+            <a key={link.href} href={link.href} className="nav-link font-mono text-[10px] tracking-[0.2em] uppercase text-fg hover:opacity-70">
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-5">
           <LanguageSwitcher />
-          <ThemeToggle />
-
-          <a
-            href="/pdf/herodes-lugo-cv.pdf"
-            download="Herodes_Lugo_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-cv hidden rounded-sm px-4 py-2 text-xs font-medium tracking-[0.15em] uppercase md:inline-flex"
-            data-gsap="cta-button"
-          >
-            {t("downloadCV")}
-          </a>
 
           <button
             className="flex flex-col items-center justify-center gap-1.5 md:hidden"
@@ -71,7 +58,7 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`overflow-hidden transition-all duration-300 md:hidden ${menuOpen ? "border-t border-line" : ""}`}
+        className={`overflow-hidden bg-surface transition-all duration-300 md:hidden border-b border-border`}
         style={{ maxHeight: menuOpen ? "24rem" : "0", opacity: menuOpen ? 1 : 0 }}
       >
         <nav className="flex flex-col px-6 pb-4 pt-2">
@@ -80,20 +67,11 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="nav-link border-b border-line py-4 text-xs font-medium tracking-[0.15em] uppercase"
+              className="border-b border-border py-4 font-mono text-[10px] tracking-[0.2em] uppercase text-fg"
             >
               {link.label}
             </a>
           ))}
-          <a
-            href="/pdf/herodes-lugo-cv.pdf"
-            download="Herodes_Lugo_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-cv mt-4 inline-flex items-center justify-center rounded-sm px-4 py-3 text-xs font-medium tracking-[0.15em] uppercase"
-          >
-            {t("downloadCV")}
-          </a>
         </nav>
       </div>
     </header>

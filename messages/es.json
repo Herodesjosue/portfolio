@@ -62,9 +62,13 @@
   },
   "Projects": {
     "sectionLabel": "04 — Proyectos",
-    "sectionTitle": "LOGROS CLAVE",
+    "sectionTitle": "PROYECTOS DESTACADOS",
+    "sectionDescription": "Proyectos desarrollados en colaboración con Esthetiqo Studio, donde participé activamente en el diseño y desarrollo de cada producto.",
     "responsibilitiesLabel": "Responsabilidades",
+    "contributionLabel": "Mi contribución",
     "visitLabel": "Visitar",
+    "studioNote": "Desarrollado con",
+    "studioLabel": "Esthetiqo Studio",
     "sozialens": {
       "industry": "IA Y REDES SOCIALES",
       "description": "Plataforma que conecta empresas con cuentas de redes sociales temáticas para impulsar la visibilidad sin depender de influencers tradicionales. Ofrece campañas publicitarias personalizables y métricas transparentes para audiencias amplias y segmentadas.",

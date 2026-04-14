@@ -92,104 +92,143 @@ const projectsMeta: ProjectMeta[] = [
   },
 ];
 
-function ProjectCard({
+/* ── Single Project Showcase ───────────────────────────────── */
+
+function ProjectShowcase({
   project,
+  index,
   visitLabel,
-  responsibilitiesLabel,
+  contributionLabel,
+  studioNote,
+  studioLabel,
 }: {
   project: Project;
+  index: number;
   visitLabel: string;
-  responsibilitiesLabel: string;
+  contributionLabel: string;
+  studioNote: string;
+  studioLabel: string;
 }) {
+  const isReversed = index % 2 !== 0;
+
   return (
-    <article className="theme-card group flex h-full flex-col overflow-hidden rounded-xl">
-      <div className="relative h-52 overflow-hidden bg-surface2 lg:h-64">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 1024px) 100vw, 50vw"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-black/40 transition-opacity duration-300 group-hover:bg-black/30" />
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.04] transition-opacity duration-300 group-hover:opacity-[0.07]"
-          style={{
-            backgroundImage: "linear-gradient(rgba(128,128,128,1) 1px, transparent 1px), linear-gradient(90deg, rgba(128,128,128,1) 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-          }}
-        />
-        <div className="absolute bottom-4 right-5">
-          <span className="select-none text-6xl font-black" style={{ color: "rgba(255,255,255,0.15)" }}>
-            {project.number}
-          </span>
-        </div>
-        <div className="absolute left-4 top-4 h-5 w-5 border-l border-t transition-all duration-300 group-hover:opacity-60" style={{ borderColor: "rgba(255,255,255,0.3)" }} />
-        <div className="absolute right-4 top-4 h-5 w-5 border-r border-t transition-all duration-300 group-hover:opacity-60" style={{ borderColor: "rgba(255,255,255,0.3)" }} />
-        <div className="absolute left-1/2 top-4 -translate-x-1/2">
-          <span
-            className="rounded-sm px-3 py-1.5 text-[9px] font-medium tracking-[0.25em] uppercase backdrop-blur-sm"
-            style={{ border: "1px solid rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.75)", background: "rgba(0,0,0,0.35)" }}
-          >
-            {project.industry}
-          </span>
-        </div>
-      </div>
+    <article
+      className="project-showcase"
+      data-reveal="fade-up"
+      data-reveal-delay={`${index * 120}`}
+    >
+      <div
+        className={`flex flex-col ${
+          isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
+        }`}
+      >
+        {/* ── Hero Image ─────────────────────────────────── */}
+        <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:w-[58%]">
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 1024px) 100vw, 58vw"
+          />
 
-      <div className="flex flex-1 flex-col gap-5 p-7">
-        <h3 className="text-xl font-bold leading-tight tracking-tight text-fg">{project.title}</h3>
+          {/* Gradient overlay */}
+          <div className="project-hero-overlay pointer-events-none absolute inset-0" />
 
-        <p className="text-sm leading-relaxed text-muted">{project.description}</p>
+          {/* Grid pattern overlay */}
+          <div className="project-grid-overlay pointer-events-none absolute inset-0" />
 
-        <div className="flex flex-col flex-1 gap-1.5">
-          <span className="text-[9px] font-medium tracking-[0.3em] uppercase text-muted opacity-50">
-            {responsibilitiesLabel}
-          </span>
-          <ul className="flex flex-col gap-1">
-            {project.responsibilities.map((r) => (
-              <li key={r} className="flex items-center gap-2 text-[11px] leading-snug text-muted">
-                <span className="h-px w-3 shrink-0 bg-line2" />
-                {r}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div
-          className="grid gap-4 border-t border-line pt-4"
-          style={{ gridTemplateColumns: `repeat(${project.stats.length}, 1fr)` }}
-        >
-          {/* {project.stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col gap-0.5">
-              <span className="text-base font-bold tracking-tight text-fg">{stat.value}</span>
-              <span className="text-[9px] font-medium tracking-[0.2em] uppercase text-muted opacity-50">{stat.label}</span>
-            </div>
-          ))} */}
-        </div>
-
-        <div className="mt-auto pt-2">
-          {project.websiteUrl ? (
-            <a
-              href={project.websiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 transition-opacity duration-300 hover:opacity-70"
-            >
-              <span className="text-xs font-medium tracking-[0.15em] uppercase text-muted">
-                {visitLabel} {project.websiteLabel}
-              </span>
-              <ArrowRight className="h-3 w-3 text-line2 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-          ) : (
-            <span className="text-xs font-medium tracking-[0.15em] uppercase text-muted opacity-40">
-              {project.websiteLabel}
+          {/* Large number */}
+          <div className="absolute bottom-6 right-8">
+            <span className="project-number text-7xl lg:text-8xl">
+              {project.number}
             </span>
-          )}
+          </div>
+
+          {/* Corner accents */}
+          <div
+            className="absolute left-4 top-4 h-5 w-5 border-l border-t"
+            style={{ borderColor: "rgba(255,255,255,0.3)" }}
+          />
+          <div
+            className="absolute right-4 top-4 h-5 w-5 border-r border-t"
+            style={{ borderColor: "rgba(255,255,255,0.3)" }}
+          />
+
+          {/* Industry badge */}
+          <div className="absolute left-1/2 top-4 -translate-x-1/2">
+            <span className="project-industry-badge rounded-sm px-3 py-1.5 text-[9px] font-medium tracking-[0.25em] uppercase">
+              {project.industry}
+            </span>
+          </div>
+        </div>
+
+        {/* ── Content ──────────────────────────────────── */}
+        <div className="flex flex-1 flex-col justify-between gap-6 p-8 lg:p-10">
+          {/* Title */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-2xl font-black leading-tight tracking-tight text-fg lg:text-3xl">
+              {project.title}
+            </h3>
+            <p className="text-sm leading-relaxed text-muted">
+              {project.description}
+            </p>
+          </div>
+
+          {/* Contributions */}
+          <div className="flex flex-col gap-3">
+            <span className="text-[9px] font-semibold tracking-[0.3em] uppercase text-muted opacity-50">
+              {contributionLabel}
+            </span>
+            <ul className="flex flex-col gap-2">
+              {project.responsibilities.map((r) => (
+                <li
+                  key={r}
+                  className="flex items-start gap-3 text-[13px] leading-snug text-muted"
+                >
+                  <span className="mt-2 h-px w-4 shrink-0 bg-line2" />
+                  {r}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Footer: Esthetiqo badge + link */}
+          <div className="flex flex-col gap-4 border-t border-line pt-5">
+            {/* Esthetiqo studio badge */}
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] tracking-[0.1em] text-muted opacity-50">
+                {studioNote}
+              </span>
+              <span className="studio-badge">{studioLabel}</span>
+            </div>
+
+            {/* Project link */}
+            {project.websiteUrl ? (
+              <a
+                href={project.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-opacity duration-300 hover:opacity-70"
+              >
+                <span className="text-xs font-medium tracking-[0.15em] uppercase text-fg">
+                  {visitLabel} {project.websiteLabel}
+                </span>
+                <ArrowRight className="h-3 w-3 text-muted transition-transform duration-300 hover:translate-x-1" />
+              </a>
+            ) : (
+              <span className="text-xs font-medium tracking-[0.15em] uppercase text-muted opacity-40">
+                {project.websiteLabel}
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </article>
   );
 }
+
+/* ── Projects Section ──────────────────────────────────────── */
 
 export default function Projects() {
   const t = useTranslations("Projects");
@@ -202,28 +241,48 @@ export default function Projects() {
   }));
 
   return (
-    <section id="proyectos" className=" lg:py-0" data-gsap="projects-section">
+    <section id="proyectos" className="py-24 lg:py-32" data-gsap="projects-section">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
+        {/* ── Section Header ─────────────────────────────── */}
         <div className="mb-16 flex flex-col gap-4" data-gsap="projects-header">
-          <span className="text-xs font-medium tracking-[0.35em] uppercase text-muted">
+          <span
+            className="text-xs font-medium tracking-[0.35em] uppercase text-muted"
+            data-reveal="fade-in"
+          >
             {t("sectionLabel")}
           </span>
-          <h2 className="text-4xl font-black tracking-[-0.02em] text-fg sm:text-5xl lg:text-6xl">
-            {t("sectionTitle")}
-          </h2>
-          <div className="h-px w-16 bg-line2" />
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <h2
+              className="text-4xl font-black tracking-[-0.02em] text-fg sm:text-5xl lg:text-6xl"
+              data-reveal="fade-up"
+              data-reveal-delay="100"
+            >
+              {t("sectionTitle")}
+            </h2>
+            <p
+              className="max-w-sm pb-1 text-sm text-muted"
+              data-reveal="fade-left"
+              data-reveal-delay="200"
+            >
+              {t("sectionDescription")}
+            </p>
+          </div>
+          <div className="h-px w-16 bg-line2" data-reveal="fade-left" data-reveal-delay="250" />
         </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2" data-gsap="projects-grid">
+        {/* ── Project Showcases ──────────────────────────── */}
+        <div className="flex flex-col gap-8" data-gsap="projects-grid">
           {projects.map((project, i) => (
-            <div key={project.id} className="h-full" data-gsap={`project-card-${i}`}>
-              <ProjectCard
-                project={project}
-                visitLabel={t("visitLabel")}
-                responsibilitiesLabel={t("responsibilitiesLabel")}
-              />
-            </div>
+            <ProjectShowcase
+              key={project.id}
+              project={project}
+              index={i}
+              visitLabel={t("visitLabel")}
+              contributionLabel={t("contributionLabel")}
+              studioNote={t("studioNote")}
+              studioLabel={t("studioLabel")}
+            />
           ))}
         </div>
       </div>

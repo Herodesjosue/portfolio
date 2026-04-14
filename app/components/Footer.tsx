@@ -54,7 +54,10 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col items-center gap-12 text-center">
 
-          <span className="text-xs font-medium tracking-[0.35em] uppercase text-muted">
+          <span
+            className="text-xs font-medium tracking-[0.35em] uppercase text-muted"
+            data-reveal="fade-in"
+          >
             {t("sectionLabel")}
           </span>
 
@@ -62,6 +65,8 @@ export default function Footer() {
             className="font-black tracking-[-0.03em] text-fg"
             style={{ fontSize: "clamp(2.4rem, 6vw, 5.5rem)", lineHeight: 0.9 }}
             data-gsap="footer-headline"
+            data-reveal="scale-in"
+            data-reveal-delay="100"
           >
             {t("headline1")}
             <br />
@@ -70,13 +75,21 @@ export default function Footer() {
             {t("headline3")}
           </h2>
 
-          <p className="max-w-2xl text-base leading-relaxed text-muted">
+          <p
+            className="max-w-2xl text-base leading-relaxed text-muted"
+            data-reveal="fade-up"
+            data-reveal-delay="250"
+          >
             {t("descriptionPre")}{" "}
             <em className="not-italic font-semibold text-fg">{t("descriptionHighlight")}</em>{" "}
             {t("descriptionPost")}
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div
+            className="flex flex-wrap items-center justify-center gap-4"
+            data-reveal="fade-up"
+            data-reveal-delay="400"
+          >
             <a
               href="mailto:herodeslugo@gmail.com"
               className="btn-primary inline-flex items-center gap-3 rounded-sm px-8 py-4 text-sm font-bold tracking-[0.15em] uppercase"
@@ -95,7 +108,11 @@ export default function Footer() {
             </a>
           </div>
 
-          <div className="grid w-full max-w-3xl grid-cols-1 gap-3 sm:grid-cols-2">
+          <div
+            className="grid w-full max-w-3xl grid-cols-1 gap-3 sm:grid-cols-2"
+            data-reveal="fade-up"
+            data-reveal-delay="550"
+          >
             {contacts.map((c) => (
               <ContactCard key={c.type} contact={c} />
             ))}

@@ -12,10 +12,20 @@ export default function QuantumCloud() {
     if (!containerRef.current) return;
     const container = containerRef.current;
 
+    // --- Helper: detect dark mode ---
+    const isDark = () => document.documentElement.classList.contains("dark");
+
     // --- 1. ESCENA Y CÁMARA ---
+    const initialDark = isDark();
+    const bgLight = new THREE.Color(0xf5f5f5);
+    const bgDark = new THREE.Color(0x131414);
+
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x131414);
-    scene.fog = new THREE.FogExp2(0x131414, 0.035);
+    scene.background = initialDark ? bgDark.clone() : bgLight.clone();
+    scene.fog = new THREE.FogExp2(
+      initialDark ? 0x131414 : 0xf5f5f5,
+      0.035
+    );
 
     const camera = new THREE.PerspectiveCamera(
       40,
@@ -37,6 +47,7 @@ export default function QuantumCloud() {
       uniform float uTime;
       uniform vec2 uMouse;
       uniform float uHover;
+      uniform float uIsDark;
       attribute float aScale;
       attribute vec3 aRandom;
       varying vec3 vColor;
@@ -59,11 +70,21 @@ export default function QuantumCloud() {
         pos += dir * repulsion * 2.5;
         pos.x += sin(uTime * 20.0 + pos.y) * repulsion * 0.1;
 
-        vec3 colorCore = vec3(1.0, 1.0, 1.0);
-        vec3 colorOuter = vec3(0.6, 0.6, 0.6);
+        // Light mode: soft gray/blue particles
+        vec3 colorCoreLight  = vec3(0.50, 0.52, 0.58);
+        vec3 colorOuterLight = vec3(0.68, 0.70, 0.74);
+        // Dark mode: white particles
+        vec3 colorCoreDark   = vec3(1.0, 1.0, 1.0);
+        vec3 colorOuterDark  = vec3(0.6, 0.6, 0.6);
+
+        vec3 colorCore  = mix(colorCoreLight, colorCoreDark, uIsDark);
+        vec3 colorOuter = mix(colorOuterLight, colorOuterDark, uIsDark);
+
         float mixFactor = smoothstep(0.0, 4.0, radius + repulsion);
         vColor = mix(colorCore, colorOuter, mixFactor);
-        vColor += vec3(1.0, 1.0, 1.0) * repulsion;
+
+        vec3 repulsionGlow = mix(vec3(0.5, 0.55, 0.6), vec3(1.0), uIsDark);
+        vColor += repulsionGlow * repulsion;
 
         vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
         gl_Position = projectionMatrix * mvPosition;
@@ -122,9 +143,10 @@ export default function QuantumCloud() {
       vertexShader,
       fragmentShader,
       uniforms: {
-        uTime:  { value: 0 },
-        uMouse: { value: new THREE.Vector2(0, 0) },
-        uHover: { value: 0 },
+        uTime:   { value: 0 },
+        uMouse:  { value: new THREE.Vector2(0, 0) },
+        uHover:  { value: 0 },
+        uIsDark: { value: initialDark ? 1.0 : 0.0 },
       },
     });
 
@@ -140,11 +162,29 @@ export default function QuantumCloud() {
       1.5, 0.4, 0.85
     );
     bloomPass.threshold = 0.1;
-    bloomPass.strength  = 1.2;
+    bloomPass.strength  = initialDark ? 1.2 : 0.25;
     bloomPass.radius    = 0.5;
     composer.addPass(bloomPass);
 
-    // --- 6. INTERACCIÓN ---
+    // --- 6. THEME REACTIVITY ---
+    const targetBgColor = initialDark ? bgDark.clone() : bgLight.clone();
+    let targetIsDark = initialDark ? 1.0 : 0.0;
+    let targetBloomStrength = initialDark ? 1.2 : 0.25;
+
+    const updateThemeTarget = () => {
+      const dark = isDark();
+      targetBgColor.copy(dark ? bgDark : bgLight);
+      targetIsDark = dark ? 1.0 : 0.0;
+      targetBloomStrength = dark ? 1.2 : 0.25;
+    };
+
+    const themeObserver = new MutationObserver(() => updateThemeTarget());
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    // --- 7. INTERACCIÓN ---
     const mouse = new THREE.Vector2();
     let targetX = 0;
     let targetY = 0;
@@ -167,6 +207,14 @@ export default function QuantumCloud() {
         (mouse.x - material.uniforms.uMouse.value.x) * 0.1;
       material.uniforms.uMouse.value.y +=
         (mouse.y - material.uniforms.uMouse.value.y) * 0.1;
+
+      // Smooth theme transitions
+      (scene.background as THREE.Color).lerp(targetBgColor, 0.04);
+      scene.fog!.color.lerp(targetBgColor, 0.04);
+      material.uniforms.uIsDark.value +=
+        (targetIsDark - material.uniforms.uIsDark.value) * 0.04;
+      bloomPass.strength +=
+        (targetBloomStrength - bloomPass.strength) * 0.04;
 
       atom.rotation.y += 0.005;
       atom.rotation.x += (-targetY * 0.5 - atom.rotation.x) * 0.05;
@@ -193,6 +241,7 @@ export default function QuantumCloud() {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
+      themeObserver.disconnect();
       cancelAnimationFrame(animationId);
       geometry.dispose();
       material.dispose();
