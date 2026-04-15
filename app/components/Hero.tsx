@@ -22,11 +22,17 @@ export default function Hero() {
           className="flex flex-col font-black tracking-[-0.04em] uppercase"
           style={{ fontSize: "clamp(4rem, 13vw, 15rem)", lineHeight: 0.85 }}
         >
-          <span className="text-fg drop-shadow-sm" data-reveal="fade-up" data-reveal-delay="100">
+          <span 
+            className="text-fg drop-shadow-sm cyber-glitch-text animate-cyber-flicker" 
+            data-text="CREATIVE"
+            data-reveal="fade-up" 
+            data-reveal-delay="100"
+          >
             CREATIVE
           </span>
           <span 
-            className="text-transparent" 
+            className="text-transparent cyber-glitch-text" 
+            data-text="DEVELOPER"
             style={{ WebkitTextStroke: "2px var(--color-fg)" }}
             data-reveal="fade-up" 
             data-reveal-delay="300"

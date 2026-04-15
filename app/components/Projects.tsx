@@ -2,128 +2,53 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import { ArrowRight } from "./icons";
 
-interface Stat {
-  value: string;
-  label: string;
-}
-
-interface ProjectMeta {
+interface Project {
   id: string;
   number: string;
   title: string;
-  stats: Stat[];
+  industry: string;
+  description: string;
+  responsibilities: string[];
   websiteUrl: string;
   websiteLabel: string;
   image: string;
 }
 
-interface Project extends ProjectMeta {
-  industry: string;
-  description: string;
-  responsibilities: string[];
-}
-
-const projectsMeta: ProjectMeta[] = [
+const projectsMeta = [
   {
-    id: "sozialens",
-    number: "01",
-    title: "SOZIALENS",
-    stats: [
-      { value: "+250K", label: "INV. CAPTURED" },
-      { value: "+1K", label: "CLIENTS" },
-    ],
-    websiteUrl: "",
-    websiteLabel: "SOZIALENS",
+    id: "sozialens", number: "01", title: "SOZIALENS",
+    websiteUrl: "", websiteLabel: "SOZIALENS",
     image: "/images/projects/sozialens-hero.webp",
   },
   {
-    id: "nest",
-    number: "02",
-    title: "NEST",
-    stats: [
-      { value: "+25K", label: "USERS" },
-      { value: "$250M", label: "TVL" },
-    ],
-    websiteUrl: "",
-    websiteLabel: "NEST",
+    id: "nest", number: "02", title: "NEST",
+    websiteUrl: "", websiteLabel: "NEST",
     image: "/images/projects/nest-hero.webp",
   },
   {
-    id: "garbo",
-    number: "03",
-    title: "GARBO",
-    stats: [
-      { value: "$310B", label: "MARKET SHARE" },
-      { value: "$8T", label: "MARKET WORTH" },
-    ],
-    websiteUrl: "",
-    websiteLabel: "GARBO",
+    id: "garbo", number: "03", title: "GARBO",
+    websiteUrl: "", websiteLabel: "GARBO",
     image: "/images/projects/garbo-hero.webp",
   },
   {
-    id: "fenix",
-    number: "04",
-    title: "FENIX",
-    stats: [
-      { value: "+$1.7B", label: "TRADE VOLUME" },
-      { value: "+5K", label: "USERS" },
-    ],
-    websiteUrl: "https://www.fenixfinance.io/",
-    websiteLabel: "FENIX FINANCE",
+    id: "fenix", number: "04", title: "FENIX",
+    websiteUrl: "https://www.fenixfinance.io/", websiteLabel: "FENIX FINANCE",
     image: "/images/projects/fenix-hero.webp",
   },
   {
-    id: "intentx",
-    number: "05",
-    title: "INTENTX",
-    stats: [
-      { value: "+$1.7B", label: "TRADE VOLUME" },
-      { value: "$20M", label: "OPEN INTEREST" },
-    ],
-    websiteUrl: "https://intentx.io/",
-    websiteLabel: "INTENTX",
+    id: "intentx", number: "05", title: "INTENTX",
+    websiteUrl: "https://intentx.io/", websiteLabel: "INTENTX",
     image: "/images/projects/intentx-hero.webp",
   },
 ];
 
-/* ── Agency Carousel Section ──────────────────────────────────────── */
-
 export default function Projects() {
   const t = useTranslations("Projects");
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current || !stickyRef.current || !trackRef.current)
-        return;
-
-      const { top, height } = containerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      const scrollableDistance = height - windowHeight;
-      const scrolled = -top;
-
-      if (scrolled >= 0 && scrolled <= scrollableDistance) {
-        const percentage = scrolled / scrollableDistance;
-        const trackWidth = trackRef.current.scrollWidth - window.innerWidth;
-        trackRef.current.style.transform = `translate3d(-${percentage * trackWidth}px, 0, 0)`;
-      } else if (scrolled < 0) {
-        trackRef.current.style.transform = `translate3d(0px, 0, 0)`;
-      } else if (scrolled > scrollableDistance) {
-        const trackWidth = trackRef.current.scrollWidth - window.innerWidth;
-        trackRef.current.style.transform = `translate3d(-${trackWidth}px, 0, 0)`;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Primer proyecto abierto por defecto
+  const [activeId, setActiveId] = useState<string | null>("sozialens");
 
   const projects: Project[] = projectsMeta.map((meta) => ({
     ...meta,
@@ -133,126 +58,166 @@ export default function Projects() {
   }));
 
   return (
-    // Replaced bg-bg with the exact dark background color #1A1B1E provided by the user.
-    <section
-      id="proyectos"
-      className="relative h-[450vh] bg-surface2"
-      ref={containerRef}
-    >
-      <div
-        className="sticky top-0 h-screen w-full overflow-hidden flex flex-col pt-24 lg:pt-32 pb-12"
-        ref={stickyRef}
-      >
-        {/* Header layer */}
-        <div className="w-full flex flex-col md:flex-row lg:items-end justify-between px-6 lg:px-12 gap-8 shrink-0">
-          <div className="flex flex-col gap-4">
-            <span
-              className="font-mono text-[10px] tracking-[0.25em] uppercase text-white/50"
-              data-reveal="fade-in"
-            >
-              {t("sectionLabel")}
-            </span>
-            <h2
-              className="text-5xl lg:text-[6.5rem] leading-[0.85] font-black tracking-tighter text-white uppercase"
-              data-reveal="fade-up"
-            >
-              SELECTED
-              <br />
-              WORKS.
-            </h2>
-          </div>
-          <div
-            className="md:w-1/3 lg:pb-4"
+    <section id="proyectos" className="bg-surface2" data-gsap="projects-section">
+
+      {/* ── Header ───────────────────────────────────────────── */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 pt-24 lg:pt-40 pb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div className="flex flex-col gap-4">
+          <span
+            className="font-mono text-[10px] tracking-[0.25em] uppercase text-white/50"
+            data-reveal="fade-in"
+          >
+            {t("sectionLabel")}
+          </span>
+          <h2
+            className="text-5xl lg:text-[6.5rem] leading-[0.85] font-black tracking-tighter text-white uppercase"
             data-reveal="fade-up"
-            data-reveal-delay="200"
           >
-            <p className="font-mono text-[11px] leading-relaxed text-white/60 lowercase">
-              {t("sectionDescription")}
-            </p>
-          </div>
+            SELECTED<br />WORKS.
+          </h2>
         </div>
-
-        {/* Floating instruction */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 font-mono text-[9px] uppercase tracking-[0.3em] text-white/40 animate-pulse">
-          SCROLL TO VIEW GALLERY ↓
+        <div className="md:w-1/3 lg:pb-2" data-reveal="fade-up" data-reveal-delay="200">
+          <p className="font-mono text-[11px] leading-relaxed text-white/50 lowercase">
+            {t("sectionDescription")}
+          </p>
         </div>
+      </div>
 
-        {/* Carousel Track */}
-        <div
-          className="flex-1 w-full flex items-center mt-8 lg:mt-12 overflow-hidden"
-          data-reveal="fade-in"
-          data-reveal-delay="400"
-        >
-          <div
-            className="flex w-max items-center h-full px-6 lg:px-12 gap-12 lg:gap-16 will-change-transform"
-            ref={trackRef}
-          >
-            {projects.map((project) => (
-              <article
-                key={project.id}
-                className="relative flex-none w-[85vw] md:w-[60vw] lg:w-[40vw] h-[60vh] lg:h-[65vh] group flex flex-col gap-6"
+      {/* ── Accordion List ───────────────────────────────────── */}
+      {/* onMouseLeave en el wrapper: cierra al salir de la lista completa */}
+      <div
+        className="mx-auto max-w-7xl px-6 lg:px-12 pb-24 lg:pb-40"
+        onMouseLeave={() => setActiveId("sozialens")}
+      >
+        {projects.map((project, i) => {
+          const isOpen = activeId === project.id;
+
+          return (
+            <div
+              key={project.id}
+              onMouseEnter={() => setActiveId(project.id)}
+              data-reveal="fade-up"
+              data-reveal-delay={`${i * 80}`}
+            >
+              {/* Separador */}
+              <div className="h-px w-full bg-white/10" />
+
+              {/* Fila del proyecto — solo número + nombre */}
+              <div
+                className="w-full flex items-center justify-between py-6 lg:py-8 cursor-default select-none"
               >
-                {/* Image Container */}
-                <div className="relative w-full flex-1 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700 bg-white/5">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-1000 scale-105 group-hover:scale-100"
-                    sizes="(max-width: 1024px) 85vw, 40vw"
-                  />
-                  <div className="absolute inset-0 bg-black/40 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000" />
-
-                  {/* Interactive UI element */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <a
-                      href={project.websiteUrl || "#"}
-                      target={project.websiteUrl ? "_blank" : undefined}
-                      rel={
-                        project.websiteUrl ? "noopener noreferrer" : undefined
-                      }
-                      className="w-24 h-24 rounded-full backdrop-blur-md bg-white/10 border border-white/20 flex flex-col items-center justify-center text-white font-mono text-[9px] tracking-widest uppercase hover:scale-110 transition-transform duration-300 shadow-xl"
-                    >
-                      <ArrowRight className="size-4 mb-2" />
-                      {t("visitLabel")}
-                    </a>
-                  </div>
+                <div className="flex items-center gap-6 lg:gap-10">
+                  <span
+                    className="font-mono text-sm lg:text-base tabular-nums transition-colors duration-300"
+                    style={{ color: isOpen ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.2)" }}
+                  >
+                    {project.number}
+                  </span>
+                  <h3
+                    className="font-black uppercase tracking-tighter transition-opacity duration-300"
+                    style={{
+                      fontSize: "clamp(2rem, 5vw, 4.5rem)",
+                      lineHeight: 1,
+                      color: isOpen ? "#ffffff" : "rgba(255,255,255,0.85)",
+                    }}
+                  >
+                    {project.title}
+                  </h3>
                 </div>
 
-                {/* Metadata below image */}
-                <div className="w-full flex justify-between items-start shrink-0">
-                  <div className="flex flex-col gap-2">
-                    <span className="font-mono text-3xl font-light text-white/40">
-                      {project.number}
-                    </span>
-                    <h3 className="text-2xl lg:text-3xl font-black uppercase text-white tracking-tighter">
-                      {project.title}
-                    </h3>
-                    <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/50">
-                      {project.industry}
-                    </span>
-                  </div>
+                {/* Indicador de industria + flecha */}
+                <div className="flex items-center gap-4 shrink-0">
+                  <span className="hidden md:block font-mono text-[10px] tracking-widest uppercase text-white/30 transition-opacity duration-300" style={{ opacity: isOpen ? 1 : 0 }}>
+                    {project.industry}
+                  </span>
+                  <span
+                    className="text-white/30 transition-all duration-400"
+                    style={{
+                      opacity: isOpen ? 1 : 0.3,
+                      transform: isOpen ? "translateX(4px)" : "translateX(0)",
+                    }}
+                    aria-hidden="true"
+                  >
+                    <ArrowRight className="size-5" />
+                  </span>
+                </div>
+              </div>
 
-                  <div className="flex gap-6 text-right">
-                    {project.stats.map((s) => (
-                      <div key={s.label} className="flex flex-col gap-1">
-                        <span className="font-black text-white text-sm">
-                          {s.value}
+              {/* ── Panel expandido (hover-open) ─────────────── */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateRows: isOpen ? "1fr" : "0fr",
+                  transition: "grid-template-rows 0.55s cubic-bezier(0.16,1,0.3,1)",
+                }}
+              >
+                <div className="overflow-hidden">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 pb-10 lg:pb-14">
+
+                    {/* Imagen */}
+                    <div className="relative w-full aspect-[16/10] overflow-hidden bg-white/5">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover grayscale scale-105 transition-transform duration-1000"
+                        sizes="(max-width: 1024px) 90vw, 45vw"
+                      />
+                      <div className="absolute inset-0 bg-black/25 pointer-events-none" />
+                      {project.websiteUrl && (
+                        <a
+                          href={project.websiteUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute bottom-4 right-4 flex items-center gap-2 font-mono text-[9px] tracking-widest uppercase text-white/70 border border-white/20 px-4 py-2 backdrop-blur-sm hover:bg-white/10 transition-colors duration-200"
+                        >
+                          <ArrowRight className="size-3" />
+                          {project.websiteLabel}
+                        </a>
+                      )}
+                    </div>
+
+                    {/* Detalles */}
+                    <div className="flex flex-col gap-8 justify-center">
+
+                      {/* Descripción */}
+                      <div className="flex flex-col gap-3">
+                        <span className="font-mono text-[10px] tracking-widest uppercase text-white/30">
+                          {"// About"}
                         </span>
-                        <span className="font-mono text-[8px] uppercase tracking-widest text-white/40">
-                          {s.label}
-                        </span>
+                        <p className="font-mono text-[12px] leading-relaxed tracking-wide text-white/65 lowercase">
+                          {project.description}
+                        </p>
                       </div>
-                    ))}
+
+                      {/* Responsabilidades */}
+                      <div className="flex flex-col gap-3">
+                        <span className="font-mono text-[10px] tracking-widest uppercase text-white/30">
+                          {"// Responsibilities"}
+                        </span>
+                        <ul className="flex flex-col gap-2">
+                          {project.responsibilities.map((r, j) => (
+                            <li
+                              key={j}
+                              className="flex items-start gap-3 font-mono text-[11px] tracking-wide text-white/60 lowercase"
+                            >
+                              <span className="mt-[6px] shrink-0 h-px w-3 bg-white/25" />
+                              {r}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                    </div>
                   </div>
                 </div>
-              </article>
-            ))}
+              </div>
+            </div>
+          );
+        })}
 
-            {/* Spacer at the end so last card leaves room */}
-            <div className="w-[10vw] flex-none" />
-          </div>
-        </div>
+        {/* Borde final */}
+        <div className="h-px w-full bg-white/10" />
       </div>
     </section>
   );
