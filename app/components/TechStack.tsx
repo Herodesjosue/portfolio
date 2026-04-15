@@ -109,7 +109,7 @@ export default function TechStack() {
               <span className="font-mono whitespace-nowrap text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-fg">
                 {tech}
               </span>
-              <span className="text-muted/30 font-mono text-[10px]">//</span>
+              <span className="text-muted/30 font-mono text-[10px]">{"//"}</span>
             </div>
           ))}
         </div>
