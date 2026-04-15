@@ -1,11 +1,14 @@
-"use client"
+"use client";
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { ArrowRight } from "./icons";
 
-interface Stat { value: string; label: string }
+interface Stat {
+  value: string;
+  label: string;
+}
 
 interface ProjectMeta {
   id: string;
@@ -30,7 +33,7 @@ const projectsMeta: ProjectMeta[] = [
     title: "SOZIALENS",
     stats: [
       { value: "+250K", label: "INV. CAPTURED" },
-      { value: "+1K",   label: "CLIENTS" },
+      { value: "+1K", label: "CLIENTS" },
     ],
     websiteUrl: "",
     websiteLabel: "SOZIALENS",
@@ -54,7 +57,7 @@ const projectsMeta: ProjectMeta[] = [
     title: "GARBO",
     stats: [
       { value: "$310B", label: "MARKET SHARE" },
-      { value: "$8T",   label: "MARKET WORTH" },
+      { value: "$8T", label: "MARKET WORTH" },
     ],
     websiteUrl: "",
     websiteLabel: "GARBO",
@@ -66,7 +69,7 @@ const projectsMeta: ProjectMeta[] = [
     title: "FENIX",
     stats: [
       { value: "+$1.7B", label: "TRADE VOLUME" },
-      { value: "+5K",    label: "USERS" },
+      { value: "+5K", label: "USERS" },
     ],
     websiteUrl: "https://www.fenixfinance.io/",
     websiteLabel: "FENIX FINANCE",
@@ -78,7 +81,7 @@ const projectsMeta: ProjectMeta[] = [
     title: "INTENTX",
     stats: [
       { value: "+$1.7B", label: "TRADE VOLUME" },
-      { value: "$20M",   label: "OPEN INTEREST" },
+      { value: "$20M", label: "OPEN INTEREST" },
     ],
     websiteUrl: "https://intentx.io/",
     websiteLabel: "INTENTX",
@@ -90,21 +93,22 @@ const projectsMeta: ProjectMeta[] = [
 
 export default function Projects() {
   const t = useTranslations("Projects");
-  
+
   const containerRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current || !stickyRef.current || !trackRef.current) return;
-      
+      if (!containerRef.current || !stickyRef.current || !trackRef.current)
+        return;
+
       const { top, height } = containerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
+
       const scrollableDistance = height - windowHeight;
       const scrolled = -top;
-      
+
       if (scrolled >= 0 && scrolled <= scrollableDistance) {
         const percentage = scrolled / scrollableDistance;
         const trackWidth = trackRef.current.scrollWidth - window.innerWidth;
@@ -130,21 +134,38 @@ export default function Projects() {
 
   return (
     // Replaced bg-bg with the exact dark background color #1A1B1E provided by the user.
-    <section id="proyectos" className="relative h-[450vh] bg-surface2" ref={containerRef}>
-      
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col pt-24 lg:pt-32 pb-12" ref={stickyRef}>
-        
+    <section
+      id="proyectos"
+      className="relative h-[450vh] bg-surface2"
+      ref={containerRef}
+    >
+      <div
+        className="sticky top-0 h-screen w-full overflow-hidden flex flex-col pt-24 lg:pt-32 pb-12"
+        ref={stickyRef}
+      >
         {/* Header layer */}
         <div className="w-full flex flex-col md:flex-row lg:items-end justify-between px-6 lg:px-12 gap-8 shrink-0">
           <div className="flex flex-col gap-4">
-            <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white/50" data-reveal="fade-in">
+            <span
+              className="font-mono text-[10px] tracking-[0.25em] uppercase text-white/50"
+              data-reveal="fade-in"
+            >
               {t("sectionLabel")}
             </span>
-            <h2 className="text-5xl lg:text-[6.5rem] leading-[0.85] font-black tracking-tighter text-white uppercase" data-reveal="fade-up">
-              SELECTED<br/>WORKS.
+            <h2
+              className="text-5xl lg:text-[6.5rem] leading-[0.85] font-black tracking-tighter text-white uppercase"
+              data-reveal="fade-up"
+            >
+              SELECTED
+              <br />
+              WORKS.
             </h2>
           </div>
-          <div className="md:w-1/3 lg:pb-4" data-reveal="fade-up" data-reveal-delay="200">
+          <div
+            className="md:w-1/3 lg:pb-4"
+            data-reveal="fade-up"
+            data-reveal-delay="200"
+          >
             <p className="font-mono text-[11px] leading-relaxed text-white/60 lowercase">
               {t("sectionDescription")}
             </p>
@@ -153,71 +174,85 @@ export default function Projects() {
 
         {/* Floating instruction */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 font-mono text-[9px] uppercase tracking-[0.3em] text-white/40 animate-pulse">
-            SCROLL TO VIEW GALLERY ↓
+          SCROLL TO VIEW GALLERY ↓
         </div>
 
         {/* Carousel Track */}
-        <div className="flex-1 w-full flex items-center mt-8 lg:mt-12 overflow-hidden" data-reveal="fade-in" data-reveal-delay="400">
-          <div className="flex w-max items-center h-full px-6 lg:px-12 gap-12 lg:gap-16 will-change-transform" ref={trackRef}>
-              
-              {projects.map((project) => (
-                  <article key={project.id} className="relative flex-none w-[85vw] md:w-[60vw] lg:w-[40vw] h-[60vh] lg:h-[65vh] group flex flex-col gap-6">
-                      {/* Image Container */}
-                      <div className="relative w-full flex-1 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700 bg-white/5">
-                          <Image
-                              src={project.image}
-                              alt={project.title}
-                              fill
-                              className="object-cover transition-transform duration-1000 scale-105 group-hover:scale-100"
-                              sizes="(max-width: 1024px) 85vw, 40vw"
-                          />
-                          <div className="absolute inset-0 bg-black/40 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000" />
-                          
-                          {/* Interactive UI element */}
-                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                               <a 
-                                  href={project.websiteUrl || "#"} 
-                                  target={project.websiteUrl ? "_blank" : undefined}
-                                  rel={project.websiteUrl ? "noopener noreferrer" : undefined}
-                                  className="w-24 h-24 rounded-full backdrop-blur-md bg-white/10 border border-white/20 flex flex-col items-center justify-center text-white font-mono text-[9px] tracking-widest uppercase hover:scale-110 transition-transform duration-300 shadow-xl"
-                               >
-                                  <ArrowRight className="size-4 mb-2" />
-                                  {t("visitLabel")}
-                               </a>
-                          </div>
-                      </div>
+        <div
+          className="flex-1 w-full flex items-center mt-8 lg:mt-12 overflow-hidden"
+          data-reveal="fade-in"
+          data-reveal-delay="400"
+        >
+          <div
+            className="flex w-max items-center h-full px-6 lg:px-12 gap-12 lg:gap-16 will-change-transform"
+            ref={trackRef}
+          >
+            {projects.map((project) => (
+              <article
+                key={project.id}
+                className="relative flex-none w-[85vw] md:w-[60vw] lg:w-[40vw] h-[60vh] lg:h-[65vh] group flex flex-col gap-6"
+              >
+                {/* Image Container */}
+                <div className="relative w-full flex-1 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700 bg-white/5">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-1000 scale-105 group-hover:scale-100"
+                    sizes="(max-width: 1024px) 85vw, 40vw"
+                  />
+                  <div className="absolute inset-0 bg-black/40 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000" />
 
-                      {/* Metadata below image */}
-                      <div className="w-full flex justify-between items-start shrink-0">
-                          <div className="flex flex-col gap-2">
-                              <span className="font-mono text-3xl font-light text-white/40">
-                                  {project.number}
-                              </span>
-                              <h3 className="text-2xl lg:text-3xl font-black uppercase text-white tracking-tighter">
-                                  {project.title}
-                              </h3>
-                              <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/50">
-                                  {project.industry}
-                              </span>
-                          </div>
-                          
-                          <div className="flex gap-6 text-right">
-                              {project.stats.map(s => (
-                                  <div key={s.label} className="flex flex-col gap-1">
-                                      <span className="font-black text-white text-sm">{s.value}</span>
-                                      <span className="font-mono text-[8px] uppercase tracking-widest text-white/40">{s.label}</span>
-                                  </div>
-                              ))}
-                          </div>
-                      </div>
-                  </article>
-              ))}
+                  {/* Interactive UI element */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <a
+                      href={project.websiteUrl || "#"}
+                      target={project.websiteUrl ? "_blank" : undefined}
+                      rel={
+                        project.websiteUrl ? "noopener noreferrer" : undefined
+                      }
+                      className="w-24 h-24 rounded-full backdrop-blur-md bg-white/10 border border-white/20 flex flex-col items-center justify-center text-white font-mono text-[9px] tracking-widest uppercase hover:scale-110 transition-transform duration-300 shadow-xl"
+                    >
+                      <ArrowRight className="size-4 mb-2" />
+                      {t("visitLabel")}
+                    </a>
+                  </div>
+                </div>
 
-              {/* Spacer at the end so last card leaves room */}
-              <div className="w-[10vw] flex-none" />
+                {/* Metadata below image */}
+                <div className="w-full flex justify-between items-start shrink-0">
+                  <div className="flex flex-col gap-2">
+                    <span className="font-mono text-3xl font-light text-white/40">
+                      {project.number}
+                    </span>
+                    <h3 className="text-2xl lg:text-3xl font-black uppercase text-white tracking-tighter">
+                      {project.title}
+                    </h3>
+                    <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/50">
+                      {project.industry}
+                    </span>
+                  </div>
+
+                  <div className="flex gap-6 text-right">
+                    {project.stats.map((s) => (
+                      <div key={s.label} className="flex flex-col gap-1">
+                        <span className="font-black text-white text-sm">
+                          {s.value}
+                        </span>
+                        <span className="font-mono text-[8px] uppercase tracking-widest text-white/40">
+                          {s.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+
+            {/* Spacer at the end so last card leaves room */}
+            <div className="w-[10vw] flex-none" />
           </div>
         </div>
-
       </div>
     </section>
   );

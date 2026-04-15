@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import CodeTerminal from "./CodeTerminal";
 
 export default function Philosophy() {
   const t = useTranslations("Philosophy");
@@ -36,35 +37,13 @@ export default function Philosophy() {
             </h2>
           </div>
 
-          <div 
-            className="group relative w-full aspect-[4/5] overflow-hidden mt-8"
+          {/* Code Terminal Animation — reemplaza el video */}
+          <div
+            className="w-full aspect-[4/5] overflow-hidden mt-8 border border-white/[0.08]"
             data-reveal="fade-in"
             data-reveal-delay="200"
           >
-            {/* Video de fondo */}
-            <video
-              src="/videos/codigo.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 h-full w-full object-cover  transition-transform duration-1000 group-hover:scale-105"
-            />
-
-            {/* Filtro oscuro sobre el video */}
-            {/* <div className="absolute inset-0 bg-[#131414]/90 pointer-events-none" /> */}
-            {/* Viñeta suave en bordes */}
-            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%)' }} />
-
-            {/* Corner Details */}
-            <div className="absolute top-4 flex w-full justify-between px-4 font-mono text-[9px] tracking-widest text-white/70 uppercase">
-               <span>[REC]</span>
-               <span className="animate-pulse text-red-500/70">●</span>
-            </div>
-            <div className="absolute bottom-4 flex w-full justify-between px-4 font-mono text-[9px] tracking-widest text-white/70 uppercase">
-               <span>CODIGO.MP4</span>
-               <span>LIVE // AUTOPLAY</span>
-            </div>
+            <CodeTerminal />
           </div>
         </div>
 
