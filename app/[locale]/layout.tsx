@@ -47,7 +47,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} overflow-hidden antialiased bg-bg text-fg`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} overflow-x-hidden antialiased bg-bg text-fg`}>
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
