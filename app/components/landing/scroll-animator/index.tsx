@@ -2,17 +2,6 @@
 
 import { useEffect } from "react";
 
-/**
- * Global scroll-reveal animator.
- *
- * Drop this component once at page level. It observes every element
- * with a `data-reveal` attribute and adds the `.revealed` class
- * once visible.
- *
- * Usage on any element:
- *   data-reveal="fade-up | fade-down | fade-left | fade-right | scale-in | fade-in | clip-up"
- *   data-reveal-delay="200"   (optional, ms)
- */
 export default function ScrollAnimator() {
   useEffect(() => {
     const attach = () => {
@@ -41,7 +30,6 @@ export default function ScrollAnimator() {
       return () => observer.disconnect();
     };
 
-    // Short delay ensures React tree is mounted
     const timer = setTimeout(attach, 80);
     return () => clearTimeout(timer);
   }, []);
