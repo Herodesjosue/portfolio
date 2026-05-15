@@ -1,14 +1,21 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
 import HamburgerButton from "./HamburgerButton";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useNavbar } from "./useNavbar";
-import { navLinks } from "./data";
+import { navLinkDefs } from "./data";
 
 export default function Navbar() {
   const { menuOpen, toggle, close } = useNavbar();
+  const t = useTranslations("Navbar");
+
+  const navLinks = navLinkDefs.map((def, i) => ({
+    label: `0${i + 1} / ${t(`links.${def.key}`)}`,
+    href: def.href,
+  }));
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 w-full bg-transparent text-fg">

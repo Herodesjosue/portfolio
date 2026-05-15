@@ -1,11 +1,26 @@
 import { FormStatus } from "./types";
 
+export interface ContactFormStrings {
+  nameLabel: string;
+  emailLabel: string;
+  messageLabel: string;
+  namePlaceholder: string;
+  emailPlaceholder: string;
+  messagePlaceholder: string;
+  success: string;
+  error: string;
+  processing: string;
+  submit: string;
+  submitted: string;
+}
+
 interface ContactFormProps {
   status: FormStatus;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  strings: ContactFormStrings;
 }
 
-export default function ContactForm({ status, onSubmit }: ContactFormProps) {
+export default function ContactForm({ status, onSubmit, strings }: ContactFormProps) {
   const isDisabled = status === "LOADING" || status === "SUCCESS";
 
   return (
@@ -17,7 +32,7 @@ export default function ContactForm({ status, onSubmit }: ContactFormProps) {
       <form className="flex flex-col gap-12 w-full max-w-lg" onSubmit={onSubmit}>
         <div className="flex flex-col gap-2 group">
           <label className="font-mono text-[9px] tracking-[0.2em] uppercase text-muted group-focus-within:text-fg transition-colors">
-            01 // Name
+            {strings.nameLabel}
           </label>
           <input
             name="name"
@@ -25,13 +40,13 @@ export default function ContactForm({ status, onSubmit }: ContactFormProps) {
             required
             disabled={isDisabled}
             className="w-full bg-transparent border-b border-fg/20 py-4 font-black uppercase text-2xl lg:text-3xl text-fg focus:outline-none focus:border-fg transition-colors placeholder:text-fg/10 disabled:opacity-50"
-            placeholder="JOHN DOE"
+            placeholder={strings.namePlaceholder}
           />
         </div>
 
         <div className="flex flex-col gap-2 group">
           <label className="font-mono text-[9px] tracking-[0.2em] uppercase text-muted group-focus-within:text-fg transition-colors">
-            02 // Email
+            {strings.emailLabel}
           </label>
           <input
             name="email"
@@ -39,13 +54,13 @@ export default function ContactForm({ status, onSubmit }: ContactFormProps) {
             required
             disabled={isDisabled}
             className="w-full bg-transparent border-b border-fg/20 py-4 font-black uppercase text-2xl lg:text-3xl text-fg focus:outline-none focus:border-fg transition-colors placeholder:text-fg/10 disabled:opacity-50"
-            placeholder="HELLO@DOMAIN.COM"
+            placeholder={strings.emailPlaceholder}
           />
         </div>
 
         <div className="flex flex-col gap-2 group">
           <label className="font-mono text-[9px] tracking-[0.2em] uppercase text-muted group-focus-within:text-fg transition-colors">
-            03 // Message
+            {strings.messageLabel}
           </label>
           <textarea
             name="message"
@@ -57,19 +72,19 @@ export default function ContactForm({ status, onSubmit }: ContactFormProps) {
               e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
             }}
             className="w-full bg-transparent border-b border-fg/20 py-4 font-black uppercase text-xl lg:text-2xl text-fg focus:outline-none focus:border-fg transition-colors resize-none overflow-hidden placeholder:text-fg/10 disabled:opacity-50"
-            placeholder="TELL ME ABOUT YOUR PROJECT..."
+            placeholder={strings.messagePlaceholder}
           />
         </div>
 
         <div className="mt-12 w-full flex flex-col gap-6 items-start lg:items-end">
           {status === "SUCCESS" && (
             <p className="font-mono text-[10px] tracking-widest text-green-500 uppercase animate-fade-in">
-              {"✓ Message sent successfully. I'll get back to you soon."}
+              {strings.success}
             </p>
           )}
           {status === "ERROR" && (
             <p className="font-mono text-[10px] tracking-widest text-red-500 uppercase animate-fade-in">
-              × Something went wrong. Please try again or email me directly.
+              {strings.error}
             </p>
           )}
 
@@ -100,7 +115,7 @@ export default function ContactForm({ status, onSubmit }: ContactFormProps) {
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   />
                 </svg>
-                PROCESSING...
+                {strings.processing}
               </span>
             ) : (
               <>
@@ -114,7 +129,7 @@ export default function ContactForm({ status, onSubmit }: ContactFormProps) {
                   </>
                 )}
                 <span className="relative z-10 font-mono text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-4">
-                  {status === "SUCCESS" ? "✓ MESSAGE SENT" : "START PROJECT"}
+                  {status === "SUCCESS" ? strings.submitted : strings.submit}
                   {status === "IDLE" && (
                     <span className="transform group-hover:translate-x-2 transition-transform duration-300">
                       →

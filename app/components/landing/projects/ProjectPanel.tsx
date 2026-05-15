@@ -5,9 +5,11 @@ import { Project } from "./types";
 interface ProjectPanelProps {
   project: Project;
   isOpen: boolean;
+  aboutLabel: string;
+  responsibilitiesLabel: string;
 }
 
-export default function ProjectPanel({ project, isOpen }: ProjectPanelProps) {
+export default function ProjectPanel({ project, isOpen, aboutLabel, responsibilitiesLabel }: ProjectPanelProps) {
   return (
     <div
       style={{
@@ -43,7 +45,7 @@ export default function ProjectPanel({ project, isOpen }: ProjectPanelProps) {
           <div className="flex flex-col gap-8 justify-center">
             <div className="flex flex-col gap-3">
               <span className="font-mono text-[10px] tracking-widest uppercase text-white/30">
-                {"// About"}
+                {`// ${aboutLabel}`}
               </span>
               <p className="font-mono text-[12px] leading-relaxed tracking-wide text-white/65 lowercase">
                 {project.description}
@@ -52,7 +54,7 @@ export default function ProjectPanel({ project, isOpen }: ProjectPanelProps) {
 
             <div className="flex flex-col gap-3">
               <span className="font-mono text-[10px] tracking-widest uppercase text-white/30">
-                {"// Responsibilities"}
+                {`// ${responsibilitiesLabel}`}
               </span>
               <ul className="flex flex-col gap-2">
                 {project.responsibilities.map((r, j) => (

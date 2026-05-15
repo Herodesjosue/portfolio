@@ -35,9 +35,9 @@ export default function Projects() {
             className="text-5xl lg:text-[6.5rem] leading-[0.85] font-black tracking-tighter text-white uppercase"
             data-reveal="fade-up"
           >
-            SELECTED
+            {t("headlineA")}
             <br />
-            WORKS.
+            {t("headlineB")}
           </h2>
         </div>
         <div className="md:w-1/3 lg:pb-2" data-reveal="fade-up" data-reveal-delay="200">
@@ -62,7 +62,12 @@ export default function Projects() {
               isOpen={activeId === project.id}
               onMouseEnter={() => setActiveId(project.id)}
             />
-            <ProjectPanel project={project} isOpen={activeId === project.id} />
+            <ProjectPanel
+              project={project}
+              isOpen={activeId === project.id}
+              aboutLabel={t("aboutLabel")}
+              responsibilitiesLabel={t("responsibilitiesLabel")}
+            />
           </div>
         ))}
         <div className="h-px w-full bg-white/10" />

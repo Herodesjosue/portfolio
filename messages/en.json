@@ -27,7 +27,13 @@
       "experience": "Yrs. exp.",
       "projects": "Projects",
       "technologies": "Technologies"
-    }
+    },
+    "word1": "CREATIVE",
+    "word2": "DEVELOPER",
+    "role": "Web Developer",
+    "tagline": "// SCALABLE WEB SOLUTIONS.",
+    "cta": "EXPLORE MY WORK",
+    "bio": "Full-stack developer and architect driven by a passion for building efficient, secure applications. Expertise in web development, with a focus on performance, immersive experiences, and pushing boundaries in code."
   },
   "Philosophy": {
     "sectionLabel": "02 — Philosophy",
@@ -69,6 +75,9 @@
     "visitLabel": "Visit",
     "studioNote": "Developed with",
     "studioLabel": "Esthetiqo Studio",
+    "aboutLabel": "About",
+    "headlineA": "SELECTED",
+    "headlineB": "WORKS.",
     "sozialens": {
       "industry": "AI AND SMM",
       "description": "Platform that connects businesses with thematic social media accounts to boost visibility without relying on traditional influencers. Offers customizable ad campaigns and transparent metrics for broad and targeted audiences.",
@@ -112,15 +121,28 @@
   },
   "Footer": {
     "sectionLabel": "05 — Contact",
-    "headline1": "READY TO",
-    "headline2": "BUILD SOMETHING",
-    "headline3": "INCREDIBLE?",
+    "headline1": "LET'S BUILD",
+    "headline2": "THE FUTURE.",
     "descriptionPre": "If you're looking for a developer who sees code as a tool to",
     "descriptionHighlight": "solve real problems",
     "descriptionPost": "through innovation, let's talk.",
     "emailButton": "Send a Message",
     "linkedinButton": "Connect on LinkedIn",
-    "copyright": "Copyright © 2026 Herodes Lugo. All rights reserved."
+    "copyright": "Copyright © 2026 Herodes Lugo. All rights reserved.",
+    "footerRole": "Creative Developer",
+    "form": {
+      "nameLabel": "01 // Name",
+      "emailLabel": "02 // Email",
+      "messageLabel": "03 // Message",
+      "namePlaceholder": "JOHN DOE",
+      "emailPlaceholder": "HELLO@DOMAIN.COM",
+      "messagePlaceholder": "TELL ME ABOUT YOUR PROJECT...",
+      "success": "✓ Message sent successfully. I'll get back to you soon.",
+      "error": "× Something went wrong. Please try again or email me directly.",
+      "processing": "PROCESSING...",
+      "submit": "START PROJECT",
+      "submitted": "✓ MESSAGE SENT"
+    }
   },
   "ThemeToggle": {
     "activateLight": "Switch to light mode",

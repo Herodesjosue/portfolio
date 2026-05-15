@@ -1,6 +1,11 @@
+import { getTranslations } from "next-intl/server";
 import HeroBackground from "./HeroBackground";
 
-export default function Hero() {
+export default async function Hero() {
+  const t = await getTranslations("Hero");
+  const word1 = t("word1");
+  const word2 = t("word2");
+
   return (
     <section
       id="inicio"
@@ -16,20 +21,20 @@ export default function Hero() {
         >
           <span
             className="text-fg drop-shadow-sm cyber-glitch-text animate-cyber-flicker"
-            data-text="CREATIVE"
+            data-text={word1}
             data-reveal="fade-up"
             data-reveal-delay="100"
           >
-            CREATIVE
+            {word1}
           </span>
           <span
             className="text-transparent cyber-glitch-text"
-            data-text="DEVELOPER"
+            data-text={word2}
             style={{ WebkitTextStroke: "2px var(--color-fg)" }}
             data-reveal="fade-up"
             data-reveal-delay="300"
           >
-            DEVELOPER
+            {word2}
           </span>
         </h1>
 
@@ -39,7 +44,7 @@ export default function Hero() {
           data-reveal-delay="600"
         >
           <p className="font-mono text-[10px] leading-relaxed tracking-[0.25em] text-fg/80 uppercase">
-            Herodes Lugo <span className="mx-2 opacity-30">/</span> Web Developer
+            Herodes Lugo <span className="mx-2 opacity-30">/</span> {t("role")}
           </p>
         </div>
       </div>
@@ -47,22 +52,20 @@ export default function Hero() {
       <div className="mt-16 flex w-full flex-col items-start justify-between gap-12 md:flex-row md:items-end lg:mt-24">
         <div className="flex flex-col gap-6" data-reveal="fade-up" data-reveal-delay="700">
           <p className="font-mono text-[10px] tracking-[0.25em] text-fg uppercase">
-            {"// SCALABLE WEB SOLUTIONS."}
+            {t("tagline")}
           </p>
           <a
             href="#proyectos"
             className="group mt-12 inline-flex items-center gap-3 font-mono text-[10px] font-bold tracking-[0.2em] text-fg transition-opacity hover:opacity-70 uppercase"
           >
-            EXPLORE MY WORK
+            {t("cta")}
             <span className="transition-transform duration-300 group-hover:translate-y-1">↓</span>
           </a>
         </div>
 
         <div className="max-w-[400px]" data-reveal="fade-up" data-reveal-delay="850">
           <p className="font-mono text-[11px] leading-relaxed tracking-wider text-muted lowercase">
-            Full-stack developer and architect driven by a passion for building efficient, secure
-            applications. Expertise in web development, with a focus on performance, immersive
-            experiences, and pushing boundaries in code.
+            {t("bio")}
           </p>
         </div>
       </div>

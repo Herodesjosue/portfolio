@@ -27,7 +27,13 @@
       "experience": "Años exp.",
       "projects": "Proyectos",
       "technologies": "Tecnologías"
-    }
+    },
+    "word1": "CREATIVE",
+    "word2": "DEVELOPER",
+    "role": "Desarrollador Web",
+    "tagline": "// SOLUCIONES WEB ESCALABLES.",
+    "cta": "EXPLORAR MI TRABAJO",
+    "bio": "Desarrollador y arquitecto full-stack impulsado por la pasión de construir aplicaciones eficientes y seguras. Experiencia en desarrollo web con foco en rendimiento, experiencias inmersivas y llevar el código al límite."
   },
   "Philosophy": {
     "sectionLabel": "02 — Filosofía",
@@ -69,6 +75,9 @@
     "visitLabel": "Visitar",
     "studioNote": "Desarrollado con",
     "studioLabel": "Esthetiqo Studio",
+    "aboutLabel": "Acerca de",
+    "headlineA": "TRABAJOS",
+    "headlineB": "SELECCIONADOS.",
     "sozialens": {
       "industry": "IA Y REDES SOCIALES",
       "description": "Plataforma que conecta empresas con cuentas de redes sociales temáticas para impulsar la visibilidad sin depender de influencers tradicionales. Ofrece campañas publicitarias personalizables y métricas transparentes para audiencias amplias y segmentadas.",
@@ -112,15 +121,28 @@
   },
   "Footer": {
     "sectionLabel": "05 — Contacto",
-    "headline1": "¿LISTO PARA",
-    "headline2": "CONSTRUIR ALGO",
-    "headline3": "INCREÍBLE?",
+    "headline1": "FORJEMOS",
+    "headline2": "EL FUTURO.",
     "descriptionPre": "Si buscas a un desarrollador que vea el código como una herramienta para",
     "descriptionHighlight": "resolver problemas reales",
     "descriptionPost": "mediante la innovación, hablemos.",
     "emailButton": "Escribir un Mensaje",
     "linkedinButton": "Conectar en LinkedIn",
-    "copyright": "Copyright © 2026 Herodes Lugo. Todos los derechos reservados."
+    "copyright": "Copyright © 2026 Herodes Lugo. Todos los derechos reservados.",
+    "footerRole": "Desarrollador Creativo",
+    "form": {
+      "nameLabel": "01 // Nombre",
+      "emailLabel": "02 // Email",
+      "messageLabel": "03 // Mensaje",
+      "namePlaceholder": "JUAN PÉREZ",
+      "emailPlaceholder": "HOLA@DOMINIO.COM",
+      "messagePlaceholder": "CUÉNTAME SOBRE TU PROYECTO...",
+      "success": "✓ Mensaje enviado exitosamente. Te responderé pronto.",
+      "error": "× Algo salió mal. Inténtalo de nuevo o escríbeme directamente.",
+      "processing": "PROCESANDO...",
+      "submit": "INICIAR PROYECTO",
+      "submitted": "✓ MENSAJE ENVIADO"
+    }
   },
   "ThemeToggle": {
     "activateLight": "Activar modo claro",
