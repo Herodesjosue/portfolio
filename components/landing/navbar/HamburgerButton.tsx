@@ -21,7 +21,7 @@ export default function HamburgerButton({ open, onClick }: HamburgerButtonProps)
       {lineStyles(open).map((style, i) => (
         <span
           key={i}
-          className="block h-px w-6 bg-fg transition-all duration-300"
+          className="block h-px w-6 bg-muted transition-all duration-300"
           style={style}
         />
       ))}

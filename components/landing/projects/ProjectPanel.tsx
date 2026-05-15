@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight } from "@/app/components/icons";
+import { ArrowRight } from "@/components/icons";
 import { Project } from "./types";
 
 interface ProjectPanelProps {

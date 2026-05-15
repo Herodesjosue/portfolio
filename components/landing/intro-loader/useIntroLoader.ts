@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useUIStore } from "@/app/store/uiStore";
+import { useUIStore } from "@/store/uiStore";
 import { Phase } from "./types";
 
 export function useIntroLoader() {

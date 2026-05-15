@@ -18,11 +18,11 @@ export default function Navbar() {
   }));
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 w-full bg-transparent text-fg">
+    <header className="fixed  max-sm:backdrop-blur-xl left-0 right-0 top-0 z-50 w-full bg-transparent text-fg">
       <div className="mx-auto flex h-20 w-full items-center justify-between px-6 lg:px-12">
         <a
           href="#inicio"
-          className="text-base font-black tracking-widest text-fg uppercase"
+          className="text-base font-black tracking-widest text-muted uppercase"
           data-gsap="logo"
         >
           HERODES

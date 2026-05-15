@@ -33,7 +33,7 @@ export default function NavLinks({ links, variant, onLinkClick }: NavLinksProps)
           key={link.href}
           href={link.href}
           onClick={onLinkClick}
-          className="border-b border-border py-4 font-mono text-[10px] tracking-[0.2em] uppercase text-fg"
+          className="border-b border-border py-4 font-mono text-[10px] tracking-[0.2em] uppercase text-muted"
         >
           {link.label}
         </a>

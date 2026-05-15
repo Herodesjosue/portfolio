@@ -10,7 +10,7 @@ interface MobileMenuProps {
 export default function MobileMenu({ open, links, onClose }: MobileMenuProps) {
   return (
     <div
-      className="overflow-hidden bg-surface transition-all duration-300 md:hidden border-b border-border"
+      className="overflow-hidden  transition-all duration-300 md:hidden border-b border-border"
       style={{ maxHeight: open ? "24rem" : "0", opacity: open ? 1 : 0 }}
     >
       <NavLinks links={links} variant="mobile" onLinkClick={onClose} />

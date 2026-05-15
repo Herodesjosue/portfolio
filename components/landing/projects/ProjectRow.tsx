@@ -1,4 +1,4 @@
-import { ArrowRight } from "@/app/components/icons";
+import { ArrowRight } from "@/components/icons";
 import { Project } from "./types";
 
 interface ProjectRowProps {

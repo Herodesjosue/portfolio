@@ -1,4 +1,4 @@
-import { EmailIcon, LinkedInIcon, XIcon, GitHubIcon } from "@/app/components/icons";
+import { EmailIcon, LinkedInIcon, XIcon, GitHubIcon } from "@/components/icons";
 
 interface FooterBarProps {
   role: string;
