@@ -21,14 +21,14 @@ export default function FooterBar() {
         >
           LinkedIn
         </a>
-        <a
+        {/* <a
           href="/pdf/herodes-lugo-cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:opacity-60 transition-opacity text-muted"
         >
           Curriculum
-        </a>
+        </a> */}
       </div>
 
       <div className="font-mono text-[9px] uppercase tracking-widest text-muted/40">
