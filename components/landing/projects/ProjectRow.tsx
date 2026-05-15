@@ -4,14 +4,15 @@ import { Project } from "./types";
 interface ProjectRowProps {
   project: Project;
   isOpen: boolean;
-  onMouseEnter: () => void;
+  onClick: () => void;
+  onPointerEnter: (e: React.PointerEvent<HTMLDivElement>) => void;
 }
 
-export default function ProjectRow({ project, isOpen, onMouseEnter }: ProjectRowProps) {
+export default function ProjectRow({ project, isOpen, onClick, onPointerEnter }: ProjectRowProps) {
   return (
-    <div onMouseEnter={onMouseEnter}>
+    <div onClick={onClick} onPointerEnter={onPointerEnter} className="group cursor-pointer">
       <div className="h-px w-full bg-white/10" />
-      <div className="w-full flex items-center justify-between py-6 lg:py-8 cursor-default select-none">
+      <div className="w-full flex items-center justify-between py-6 lg:py-8 select-none">
         <div className="flex items-center gap-6 lg:gap-10">
           <span
             className="font-mono text-sm lg:text-base tabular-nums transition-colors duration-300"

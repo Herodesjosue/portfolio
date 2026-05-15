@@ -20,7 +20,7 @@ export default function Projects() {
   }));
 
   return (
-    <section id="proyectos" className="relative" data-gsap="projects-section">
+    <section id="proyectos" className="relative  overflow-hidden" data-gsap="projects-section">
       <QuantumCloudLoader />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-12 pt-24 lg:pt-40 pb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
@@ -49,7 +49,9 @@ export default function Projects() {
 
       <div
         className="mx-auto max-w-7xl px-6 lg:px-12 pb-24 lg:pb-40"
-        onMouseLeave={reset}
+        onPointerLeave={(e) => {
+          if (e.pointerType === "mouse") reset();
+        }}
       >
         {projects.map((project, i) => (
           <div
@@ -60,7 +62,10 @@ export default function Projects() {
             <ProjectRow
               project={project}
               isOpen={activeId === project.id}
-              onMouseEnter={() => setActiveId(project.id)}
+              onClick={() => setActiveId(activeId === project.id ? null : project.id)}
+              onPointerEnter={(e) => {
+                if (e.pointerType === "mouse") setActiveId(project.id);
+              }}
             />
             <ProjectPanel
               project={project}
