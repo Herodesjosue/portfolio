@@ -24,14 +24,13 @@ export default function ContactHero({
         {sectionLabel}
       </span>
       <h2
-        className="font-black tracking-tighter uppercase leading-[0.85] max-w-full overflow-hidden"
-        style={{ fontSize: "clamp(3.5rem, 7vw, 7.5rem)" }}
+        className="font-black tracking-tighter uppercase leading-[0.85] w-full overflow-hidden"
+        style={{ fontSize: "clamp(2.5rem, 7vw, 7.5rem)" }}
       >
         {headline1}
         <br />
         <span
-          className="text-transparent"
-          style={{ WebkitTextStroke: "2px var(--color-fg)" }}
+          className="text-transparent [-webkit-text-stroke:2px_var(--color-fg)]"
         >
           {headline2}
         </span>

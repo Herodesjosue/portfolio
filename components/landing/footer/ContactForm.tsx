@@ -91,7 +91,7 @@ export default function ContactForm({ status, onSubmit, strings }: ContactFormPr
           <button
             type="submit"
             disabled={isDisabled}
-            className="group relative inline-flex w-full sm:w-auto items-center justify-center px-12 py-6 lg:px-20 lg:py-8 bg-cta text-white transition-all duration-500 hover:scale-105 overflow-visible disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed"
+            className="group relative inline-flex w-full sm:w-auto items-center justify-center px-12 py-6 lg:px-20 lg:py-8 bg-cta text-white transition-all duration-500 hover:scale-105 overflow-hidden disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed"
           >
             {status === "LOADING" ? (
               <span className="relative z-10 font-mono text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-3">

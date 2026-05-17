@@ -25,7 +25,7 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contacto" className="text-fg flex flex-col">
+    <footer id="contacto" className="text-fg flex flex-col overflow-hidden">
       <div
         className="w-full flex justify-center py-24 lg:py-40 px-6 lg:px-12"
         data-gsap="footer-section"
